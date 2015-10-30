@@ -50,8 +50,9 @@ public class Map implements TileBasedMap {
     }
 
     @Override
-    public float getCost(PathFindingContext pathFindingContext, int i, int i1) {
-        return 0;
+    public float getCost(PathFindingContext pathFindingContext, int x, int y) {
+        String property = tiledMap.getTileProperty(tiledMap.getTileId(x,y,0),"cost","0");
+        return Float.parseFloat(property);
     }
 
     public TiledMap getTiledMap() {

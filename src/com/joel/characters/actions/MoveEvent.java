@@ -11,7 +11,7 @@ import org.newdawn.slick.util.pathfinding.Path;
  */
 public class MoveEvent extends Event {
     private AStarPathFinder pathFinder;
-    private Path path;
+    private Path path = null;
     private int index;
     private int timesWaited;
     private int destX;
@@ -24,7 +24,7 @@ public class MoveEvent extends Event {
         setSpeed(500);
         index = 0;
         pathFinder = new AStarPathFinder(MainGame.map,100,false);
-        resetPath();
+        //resetPath();
         timesWaited = 0;
     }
 
@@ -35,6 +35,11 @@ public class MoveEvent extends Event {
 
     @Override
     public void update() {
+        //take a cycle to look around
+        if( path == null ){
+            resetPath();
+            return;
+        }
 
         Path.Step step = path.getStep(index);
         if(!PathingHelper.isThisTileOccupied(MainGame.getCharacters(),step.getX(),step.getY(),character)) {
@@ -51,12 +56,10 @@ public class MoveEvent extends Event {
             if(timesWaited == 4) {
                 timesWaited = 0;
                 resetPath();
+                return;  //again, lets chill for a cycle as we 'look around'
             }
         }
-        // DEBUG, Sometimes getting an uncaught nullpointer for path //
-        if (path == null) {
-            System.out.println();
-        }
+
         if (index == path.getLength()) {
             character.setCurrentEvent(new IdleEvent(character));
         }

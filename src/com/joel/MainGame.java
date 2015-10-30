@@ -42,6 +42,8 @@ public class MainGame extends BasicGame {
     public void init(GameContainer gameContainer) throws SlickException {
         Properties properties = getProperties();
         tilesize = Integer.parseInt(properties.getProperty("tilesize"));
+
+        // Testing //
         map = new Map(new TiledMap("maps/test.tmx"));
         characters = new ArrayList<Char>();
         for (int count = 0; count < 15; count++) {
@@ -63,6 +65,7 @@ public class MainGame extends BasicGame {
         secondTestWiz.setCurrentEvent(new MoveEvent(secondTestWiz,1,1));
         characters.add(coolerWizard);
         characters.add(secondTestWiz);
+        // Testing //
     }
 
     @Override

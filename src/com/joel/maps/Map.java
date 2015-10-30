@@ -1,59 +1,51 @@
 package com.joel.maps;
 
-import com.joel.MainGame;
-import com.joel.Renderable;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.geom.Shape;
-
-import java.io.Serializable;
-import java.util.LinkedList;
-import java.util.List;
+import org.newdawn.slick.tiled.TiledMap;
+import org.newdawn.slick.util.pathfinding.PathFindingContext;
+import org.newdawn.slick.util.pathfinding.TileBasedMap;
 
 /**
  * Created by 430009998 on 10/28/2015.
  */
-public class Map implements Renderable, Serializable {
-    protected Shape[] collisionPoints;
-    protected String name;
-    protected Image background;
+public class Map implements TileBasedMap {
 
-    public Map(String name, String bgLocation) {
-        this.name = name;
-        try {
-            background = new Image(bgLocation).getScaledCopy(640,480);
-        } catch (SlickException e) {
-            e.printStackTrace(System.out);
-        }
-        collisionPoints = generateLevelsCollisions();
+    private TiledMap tiledMap;
+
+    public Map(TiledMap tiledMap) {
+        this.tiledMap = tiledMap;
     }
 
     @Override
-    public void render(Graphics graphics) {
-        graphics.drawImage(background,0,0);
+    public int getWidthInTiles() {
+        return tiledMap.getWidth();
     }
 
-    private Shape[] generateLevelsCollisions() {
-        List<Shape> shapeList = new LinkedList<Shape>();
-        if (name.equals("Berry Garden")) {
-            Rectangle leftWall = new Rectangle(0,0, MainGame.tilesize,480);
-            Rectangle bottomWall = new Rectangle(0,480-MainGame.tilesize,640,MainGame.tilesize);
-            Rectangle rightWall = new Rectangle(640-MainGame.tilesize,0,MainGame.tilesize,480);
-            Rectangle topWall = new Rectangle(0,0,640,MainGame.tilesize);
-            shapeList.add(leftWall);
-            shapeList.add(bottomWall);
-            shapeList.add(rightWall);
-            shapeList.add(topWall);
+    @Override
+    public int getHeightInTiles() {
+        return tiledMap.getHeight();
+    }
 
+    @Override
+    public void pathFinderVisited(int i, int i1) {
+
+    }
+
+    @Override
+    public boolean blocked(PathFindingContext pathFindingContext, int i, int i1) {
+        if (tiledMap.getTileProperty(tiledMap.getTileId(i,i1,0),"solid","false").equals("true")) {
+            return true;
         }
-        Shape[] returnArray = new Shape[shapeList.size()];
-        returnArray = shapeList.toArray(returnArray);
-        return returnArray;
+        return false;
     }
 
-    public Shape[] getCollisionPoints() {
-        return collisionPoints;
+    @Override
+    public float getCost(PathFindingContext pathFindingContext, int i, int i1) {
+        return 0;
     }
+
+    public TiledMap getTiledMap() {
+        return tiledMap;
+    }
+
+
 }

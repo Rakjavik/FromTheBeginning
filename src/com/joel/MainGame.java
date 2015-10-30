@@ -1,22 +1,26 @@
 package com.joel;
 
-import com.joel.characters.Character;
-import com.joel.characters.DwarfGuard;
+import com.joel.characters.Char;
+import com.joel.characters.Wizard;
+import com.joel.characters.actions.MoveEvent;
+import com.joel.characters.actions.WonderingEvent;
 import com.joel.maps.Map;
 import org.newdawn.slick.*;
-import org.newdawn.slick.geom.Shape;
+import org.newdawn.slick.tiled.TiledMap;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * Created by 430009998 on 10/28/2015.
  */
 public class MainGame extends BasicGame {
 
-    private List<Character> characters;
+    private static List<Char> characters;
     public static Map map;
-    public static int tilesize = 25;
+    public static int tilesize;
 
     public MainGame() {
         super("From the Beginning");
@@ -36,12 +40,20 @@ public class MainGame extends BasicGame {
 
     @Override
     public void init(GameContainer gameContainer) throws SlickException {
-        characters = new ArrayList<Character>();
-        for (int count = 0; count < 3; count++) {
-            DwarfGuard dwarfGuard = new DwarfGuard();
-            characters.add(dwarfGuard);
+        Properties properties = getProperties();
+        tilesize = Integer.parseInt(properties.getProperty("tilesize"));
+        map = new Map(new TiledMap("maps/test.tmx"));
+        characters = new ArrayList<Char>();
+        for (int count = 0; count < 30; count++) {
+            Wizard wizard = new Wizard();
+            wizard.setCurrentEvent(new WonderingEvent(wizard));
+            characters.add(wizard);
         }
-        map = new Map("Berry Garden","images/bgp.png");
+        Wizard coolerWizard = new Wizard();
+        coolerWizard.setX(19);
+        coolerWizard.setY(1);
+        coolerWizard.setCurrentEvent(new MoveEvent(coolerWizard,2,9));
+        characters.add(coolerWizard);
     }
 
     @Override
@@ -53,23 +65,37 @@ public class MainGame extends BasicGame {
 
     @Override
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
-
-        map.render(graphics);
-        for (Shape shape : map.getCollisionPoints()) {
-            graphics.draw(shape);
-        }
+        map.getTiledMap().render(0, 0);
         for (int count = 0; count < characters.size(); count++) {
             characters.get(count).render(graphics);
         }
     }
+    public static Properties getProperties() {
+        Properties properties = new Properties();
+        try {
+            properties.load(MainGame.class.getClassLoader().getResourceAsStream("main.properties"));
+        } catch(IOException ex) {
+            System.err.println("Could not find properties file main.properties");
+            System.exit(1);
+        }
+
+        return properties;
+    }
+
 
     public static void main(String[] args) {
         try {
             AppGameContainer container = new AppGameContainer(new MainGame());
-            container.setDisplayMode(640,480,false);
+
+            container.setDisplayMode(Integer.parseInt(getProperties().getProperty("resx")),
+                    Integer.parseInt(getProperties().getProperty("resy")),false);
             container.start();
         } catch (SlickException e) {
             e.printStackTrace(System.out);
         }
+    }
+
+    public static List<Char> getCharacters() {
+        return characters;
     }
 }

@@ -15,7 +15,7 @@ public class WaitEvent extends Event {
         this.pausedEvent = pausedEvent;
         this.cycles = cycles;
         count = 0;
-        setSpeed(500);
+        setSpeed(200-character.getSpeed());
     }
 
     @Override

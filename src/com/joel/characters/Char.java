@@ -5,6 +5,7 @@ import com.joel.Renderable;
 import com.joel.Updateable;
 import com.joel.characters.actions.Event;
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.util.pathfinding.Mover;
@@ -36,11 +37,12 @@ public abstract class Char implements Updateable,Renderable,Mover {
     protected Animation[] animations;
     protected int currentAnimation;
     protected int walkAnimationSpeed;
+    protected int speed;
 
     public Char(String name) {
         this.name = name;
         x = 12;
-        y = 10;
+        y = 11;
         notUpdatedFor = 1;
         direction = Event.DIRECTION_DOWN;
         currentAnimation = WALK_UP;
@@ -63,6 +65,8 @@ public abstract class Char implements Updateable,Renderable,Mover {
     @Override
     public void render(Graphics graphics) {
         animations[currentAnimation].draw(x* MainGame.tilesize,y*MainGame.tilesize);
+        graphics.setColor(Color.white);
+        graphics.drawString(name,x*MainGame.tilesize,y*MainGame.tilesize);
     }
 
 
@@ -101,4 +105,17 @@ public abstract class Char implements Updateable,Renderable,Mover {
     public void setCurrentAnimation(int currentAnimation) {
         this.currentAnimation = currentAnimation;
     }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }

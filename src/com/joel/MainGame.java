@@ -44,16 +44,25 @@ public class MainGame extends BasicGame {
         tilesize = Integer.parseInt(properties.getProperty("tilesize"));
         map = new Map(new TiledMap("maps/test.tmx"));
         characters = new ArrayList<Char>();
-        for (int count = 0; count < 30; count++) {
+        for (int count = 0; count < 15; count++) {
             Wizard wizard = new Wizard();
+            wizard.setName(String.valueOf(count));
             wizard.setCurrentEvent(new WonderingEvent(wizard));
             characters.add(wizard);
         }
         Wizard coolerWizard = new Wizard();
-        coolerWizard.setX(19);
-        coolerWizard.setY(1);
-        coolerWizard.setCurrentEvent(new MoveEvent(coolerWizard,2,9));
+        coolerWizard.setX(1);
+        coolerWizard.setY(19);
+        coolerWizard.setSpeed(100);
+        coolerWizard.setName("Blasto");
+        coolerWizard.setCurrentEvent(new MoveEvent(coolerWizard, 18, 3));
+        Wizard secondTestWiz = new Wizard();
+        secondTestWiz.setX(16);
+        secondTestWiz.setY(18);
+        secondTestWiz.setSpeed(200);
+        secondTestWiz.setCurrentEvent(new MoveEvent(secondTestWiz,1,1));
         characters.add(coolerWizard);
+        characters.add(secondTestWiz);
     }
 
     @Override

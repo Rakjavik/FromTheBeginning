@@ -15,6 +15,7 @@ public class Wizard extends Char {
             e.printStackTrace(System.out);
         }
         walkAnimationSpeed = 200;
+        speed = 50;
         Image[] images = new Image[2];
         images[0] = spriteSheet.getSprite(0,0);
         images[1] = spriteSheet.getSprite(1,0);

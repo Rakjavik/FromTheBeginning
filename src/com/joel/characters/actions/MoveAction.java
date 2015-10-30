@@ -1,6 +1,8 @@
 package com.joel.characters.actions;
 
+import com.joel.MainGame;
 import com.joel.characters.Char;
+import com.joel.util.PathingHelper;
 
 import java.awt.*;
 
@@ -25,9 +27,11 @@ public class MoveAction extends Action {
 
     @Override
     protected void update() {
-        character.setX(character.getX() + newPosition.x);
-        character.setY(character.getY() + newPosition.y);
-        character.setDirection(direction);
-        character.setCurrentAnimation(direction);
+        if(!PathingHelper.isThisTileOccupied(MainGame.getCharacters(),character.getX() + newPosition.x,character.getY() + newPosition.y,character)) {
+            character.setX(character.getX() + newPosition.x);
+            character.setY(character.getY() + newPosition.y);
+            character.setDirection(direction);
+            character.setCurrentAnimation(direction);
+        }
     }
 }

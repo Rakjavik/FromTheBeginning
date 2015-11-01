@@ -1,9 +1,11 @@
 package com.joel;
 
 import com.joel.characters.Char;
-import com.joel.characters.Wizard;
+import com.joel.characters.actions.IdleEvent;
 import com.joel.characters.actions.MoveEvent;
 import com.joel.characters.actions.WonderingEvent;
+import com.joel.characters.classes.Paladin;
+import com.joel.characters.classes.Wizard;
 import com.joel.maps.Map;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
@@ -21,6 +23,9 @@ public class MainGame extends BasicGame {
     private static List<Char> characters;
     public static Map map;
     public static int tilesize;
+    private int gameSpeed = 1;
+    private int totalDelta = 0;
+    private int selected = 0;
 
     public MainGame() {
         super("From the Beginning");
@@ -28,8 +33,18 @@ public class MainGame extends BasicGame {
 
     @Override
     public void keyPressed(int key, char c) {
-        if(key == Input.KEY_M) {
-
+        if(key == Input.KEY_W) {
+            Wizard wizard = new Wizard();
+            wizard.setX(1);
+            wizard.setY(1);
+            wizard.setCurrentEvent(new WonderingEvent(wizard));
+            characters.add(wizard);
+        } else if(key == Input.KEY_P) {
+            Paladin paladin = new Paladin();
+            paladin.setX(1);
+            paladin.setY(5);
+            paladin.setCurrentEvent(new WonderingEvent(paladin));
+            characters.add(paladin);
         }
     }
 
@@ -39,39 +54,45 @@ public class MainGame extends BasicGame {
     }
 
     @Override
+    public void mouseClicked(int button, int x, int y, int clickCount) {
+        x = x / MainGame.tilesize;
+        y = y / MainGame.tilesize;
+
+        for (int count = 0; count < characters.size(); count++) {
+            if (x == characters.get(count).getX() && y == characters.get(count).getY()) {
+                if (button == Input.MOUSE_LEFT_BUTTON) {
+                    selected = count;
+                    return;
+                } else {
+                    characters.get(selected).setCurrentEvent(new MoveEvent(characters.get(selected),characters.get(count)));
+                    return;
+                }
+            }
+        }
+        if (button == Input.MOUSE_RIGHT_BUTTON)
+            characters.get(selected).setCurrentEvent(new MoveEvent(characters.get(selected),x,y));
+    }
+
+
+    @Override
     public void init(GameContainer gameContainer) throws SlickException {
         Properties properties = getProperties();
         tilesize = Integer.parseInt(properties.getProperty("tilesize"));
-
-        // Testing //
         map = new Map(new TiledMap("maps/test.tmx"));
         characters = new ArrayList<Char>();
-        for (int count = 0; count < 15; count++) {
-            Wizard wizard = new Wizard();
-            wizard.setName(String.valueOf(count));
-            wizard.setCurrentEvent(new WonderingEvent(wizard));
-            characters.add(wizard);
-        }
-        Wizard coolerWizard = new Wizard();
-        coolerWizard.setX(1);
-        coolerWizard.setY(19);
-        coolerWizard.setSpeed(100);
-        coolerWizard.setName("Blasto");
-        coolerWizard.setCurrentEvent(new MoveEvent(coolerWizard, 18, 3));
-        Wizard secondTestWiz = new Wizard();
-        secondTestWiz.setX(16);
-        secondTestWiz.setY(18);
-        secondTestWiz.setSpeed(200);
-        secondTestWiz.setCurrentEvent(new MoveEvent(secondTestWiz,1,1));
-        characters.add(coolerWizard);
-        characters.add(secondTestWiz);
-        // Testing //
     }
 
     @Override
     public void update(GameContainer gameContainer, int i) throws SlickException {
-        for (int count = 0; count < characters.size(); count++) {
-            characters.get(count).update(i);
+        totalDelta += i;
+        if (totalDelta > gameSpeed) {
+            totalDelta = 0;
+            for (int count = 0; count < characters.size(); count++) {
+                if (characters.get(count).getCurrentEvent() instanceof IdleEvent) {
+
+                }
+                characters.get(count).update(i);
+            }
         }
     }
 
@@ -80,6 +101,9 @@ public class MainGame extends BasicGame {
         map.getTiledMap().render(0, 0);
         for (int count = 0; count < characters.size(); count++) {
             characters.get(count).render(graphics);
+            if(count == selected) {
+                graphics.drawRect(characters.get(count).getX()*tilesize,characters.get(count).getY()*tilesize,tilesize,tilesize);
+            }
         }
     }
     public static Properties getProperties() {

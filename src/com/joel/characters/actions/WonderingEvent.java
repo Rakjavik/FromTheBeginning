@@ -14,7 +14,7 @@ public class WonderingEvent extends Event {
 
     public WonderingEvent(Char character) {
         super("Wondering",character);
-        setSpeed(200);
+        setSpeed(300);
     }
 
     @Override

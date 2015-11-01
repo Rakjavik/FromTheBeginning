@@ -14,7 +14,7 @@ import java.util.List;
 public class Map implements TileBasedMap {
 
     private TiledMap tiledMap;
-    List<Char> charList;
+    private List<Char> charList;
 
     public Map(TiledMap tiledMap) {
         this.tiledMap = tiledMap;

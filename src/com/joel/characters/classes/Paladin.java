@@ -1,21 +1,23 @@
-package com.joel.characters;
+package com.joel.characters.classes;
 
+import com.joel.characters.Char;
 import org.newdawn.slick.*;
 
 /**
- * Created by 430009998 on 10/28/2015.
+ * Created by 430009998 on 10/30/2015.
  */
-public class Wizard extends Char {
+public class Paladin extends Char {
 
-    public Wizard() {
-        super("Wizard");
+    public Paladin() {
+        super("Paladin");
         try {
-            spriteSheet = new SpriteSheet("images/wiz1.png",32,32,Color.white);
+            spriteSheet = new SpriteSheet("images/pal1.png",32,32,Color.white);
         } catch (SlickException e) {
             e.printStackTrace(System.out);
         }
         walkAnimationSpeed = 200;
-        speed = 50;
+        speed = 100;
+        wits = 100;
         Image[] images = new Image[2];
         images[0] = spriteSheet.getSprite(0,0);
         images[1] = spriteSheet.getSprite(1,0);

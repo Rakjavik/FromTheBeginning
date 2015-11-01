@@ -37,7 +37,9 @@ public abstract class Char implements Updateable,Renderable,Mover {
     protected Animation[] animations;
     protected int currentAnimation;
     protected int walkAnimationSpeed;
+
     protected int speed;
+    protected int wits;
 
     public Char(String name) {
         this.name = name;
@@ -94,6 +96,10 @@ public abstract class Char implements Updateable,Renderable,Mover {
         this.currentEvent = currentEvent;
     }
 
+    public Event getCurrentEvent() {
+        return currentEvent;
+    }
+
     public void setDirection(int direction) {
         this.direction = direction;
     }
@@ -118,4 +124,7 @@ public abstract class Char implements Updateable,Renderable,Mover {
         this.name = name;
     }
 
+    public int getWits() {
+        return wits;
+    }
 }

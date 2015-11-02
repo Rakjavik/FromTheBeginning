@@ -22,7 +22,11 @@ public class WaitEvent extends Event {
     public void update() {
         count++;
         if(count == cycles) {
-            character.setCurrentEvent(pausedEvent);
+            if (pausedEvent != null) {
+                character.setCurrentEvent(pausedEvent);
+            } else {
+                character.setCurrentEvent(new IdleEvent(character));
+            }
         }
     }
 }

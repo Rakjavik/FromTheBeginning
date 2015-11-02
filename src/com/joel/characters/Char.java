@@ -37,6 +37,7 @@ public abstract class Char implements Updateable,Renderable,Mover {
     protected Animation[] animations;
     protected int currentAnimation;
     protected int walkAnimationSpeed;
+    protected boolean freeForAssignment = true;
 
     protected int speed;
     protected int wits;
@@ -66,9 +67,9 @@ public abstract class Char implements Updateable,Renderable,Mover {
 
     @Override
     public void render(Graphics graphics) {
-        animations[currentAnimation].draw(x* MainGame.tilesize,y*MainGame.tilesize);
+        animations[currentAnimation].draw(x* MainGame.tilesize-MainGame.viewX,y*MainGame.tilesize-MainGame.viewY);
         graphics.setColor(Color.white);
-        graphics.drawString(name,x*MainGame.tilesize,y*MainGame.tilesize);
+        graphics.drawString(name,x*MainGame.tilesize-MainGame.viewX,y*MainGame.tilesize-MainGame.viewY);
     }
 
 
@@ -126,5 +127,13 @@ public abstract class Char implements Updateable,Renderable,Mover {
 
     public int getWits() {
         return wits;
+    }
+
+    public boolean isFreeForAssignment() {
+        return freeForAssignment;
+    }
+
+    public void setFreeForAssignment(boolean freeForAssignment) {
+        this.freeForAssignment = freeForAssignment;
     }
 }

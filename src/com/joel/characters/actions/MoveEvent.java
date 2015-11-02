@@ -6,6 +6,9 @@ import com.joel.util.PathingHelper;
 import org.newdawn.slick.util.pathfinding.AStarPathFinder;
 import org.newdawn.slick.util.pathfinding.Path;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by 430009998 on 10/29/2015.
  */
@@ -48,18 +51,42 @@ public class MoveEvent extends Event {
     }
     private void resetPath() {
         if(following) {
-            // TODO Get characters to approach each other from preferred side using pathing with least amount of steps
-            destX = target.getX()-1;
-            destY = target.getY();
-
+            List<Path> possiblePaths = new LinkedList<Path>();
+            if (target.getX() > 0) {
+                Path pathLeft = pathFinder.findPath(character, character.getX(), character.getY(), target.getX() - 1, target.getY());
+                if (pathLeft != null) possiblePaths.add(pathLeft);
+            }
+            if (target.getX() < MainGame.map.getWidthInTiles()) {
+                Path pathRight = pathFinder.findPath(character, character.getX(), character.getY(), target.getX() + 1, target.getY());
+                if (pathRight != null) possiblePaths.add(pathRight);
+            }
+            if (target.getY() > 0) {
+                Path pathUp = pathFinder.findPath(character, character.getX(), character.getY(), target.getX(), target.getY() - 1);
+                if (pathUp != null) possiblePaths.add(pathUp);
+            }
+            if (target.getY() < MainGame.map.getHeightInTiles()) {
+                Path pathDown = pathFinder.findPath(character, character.getX(), character.getY(), target.getX(), target.getY() + 1);
+                if (pathDown != null) possiblePaths.add(pathDown);
+            }
+            int steps = MainGame.map.getHeightInTiles()*MainGame.map.getWidthInTiles();
+            for(Path newPath : possiblePaths) {
+                if (newPath.getLength() < steps) {
+                    path = newPath;
+                    steps = path.getLength();
+                }
+            }
         }
-        path = pathFinder.findPath(character, character.getX(), character.getY(), destX, destY);
-        index = 0;
+
+        else {
+            path = pathFinder.findPath(character, character.getX(), character.getY(), destX, destY);
+        }
+            index = 0;
         if (path == null) {
             pathingFailures++;
         }
         if (pathingFailures == MAX_NUM_OF_PATHING_FAILURES && !following) {
             character.setCurrentEvent(new IdleEvent(character));
+            character.setFreeForAssignment(true);
         }
     }
 

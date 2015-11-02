@@ -2,10 +2,12 @@ package com.joel.maps;
 
 import com.joel.MainGame;
 import com.joel.characters.Char;
+import com.joel.item.Item;
 import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.util.pathfinding.PathFindingContext;
 import org.newdawn.slick.util.pathfinding.TileBasedMap;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -15,9 +17,16 @@ public class Map implements TileBasedMap {
 
     private TiledMap tiledMap;
     private List<Char> charList;
+    private int maxXInPixels;
+    private int maxYInPixels;
+    private List<Item> items;
 
     public Map(TiledMap tiledMap) {
         this.tiledMap = tiledMap;
+        maxYInPixels = getHeightInTiles()*MainGame.tilesize - MainGame.resY;
+        maxXInPixels = getWidthInTiles()*MainGame.tilesize - MainGame.resX;
+        items = new LinkedList<Item>();
+
     }
 
     @Override
@@ -59,5 +68,19 @@ public class Map implements TileBasedMap {
         return tiledMap;
     }
 
+    public int getMaxXInPixels() {
+        return maxXInPixels;
+    }
 
+    public int getMaxYInPixels() {
+        return maxYInPixels;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 }

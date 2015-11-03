@@ -221,6 +221,7 @@ public class MainGame extends BasicGame {
                     StockPile destinationPile = getOpenStockPile(((StockableInterface) map.getItems().get(count)).getStockType());
                     if (destinationPile != null) {
                         map.getItems().get(count).setAvailable(false);
+                        destinationPile.setFull(true);
                         Task haulingTask = new HaulingTask(map.getItems().get(count), destinationPile);
                         tasks.add(haulingTask);
                     }

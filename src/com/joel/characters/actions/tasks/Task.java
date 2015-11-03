@@ -37,7 +37,6 @@ public abstract class Task implements Updateable {
                 step++;
                 waitingForEvent = false;
             }
-
         }
     }
 

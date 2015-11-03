@@ -4,11 +4,14 @@ import com.joel.characters.Char;
 import com.joel.characters.actions.MoveEvent;
 import com.joel.characters.actions.WonderingEvent;
 import com.joel.characters.actions.tasks.ChoppingTask;
+import com.joel.characters.actions.tasks.HaulingTask;
 import com.joel.characters.actions.tasks.Task;
 import com.joel.characters.classes.Paladin;
 import com.joel.characters.classes.Wizard;
 import com.joel.item.Item;
+import com.joel.item.misc.stock.StockPile;
 import com.joel.item.resources.ResourceInterface;
+import com.joel.item.resources.StockableInterface;
 import com.joel.maps.Map;
 import com.joel.maps.MapHelper;
 import org.newdawn.slick.*;
@@ -33,6 +36,7 @@ public class MainGame extends BasicGame {
     public static int tilesize;
     public static int viewX = 0;
     public static int viewY = 0;
+    public static Image cachedImages[];
     private int gameSpeed = 1;
     private int totalDelta = 0;
     private int selected = 0;
@@ -126,6 +130,8 @@ public class MainGame extends BasicGame {
     public void init(GameContainer gameContainer) throws SlickException {
         Properties properties = getProperties();
         tilesize = Integer.parseInt(properties.getProperty("tilesize"));
+        cachedImages = new Image[1];
+        cachedImages[0] = new Image("images/stock.png",Color.white);
         map = new Map(new TiledMap("maps/test.tmx"));
         characters = new ArrayList<Char>();
         MapHelper.populateTrees(map.getTiledMap());
@@ -133,8 +139,10 @@ public class MainGame extends BasicGame {
     }
 
     private void loadTesting() {
-
-
+        StockPile stockPile = new StockPile(StockPile.STOCK_TYPE_CRAFT_MATERIAL);
+        stockPile.setX(1);
+        stockPile.setY(1);
+        map.getStockPiles().add(stockPile);
     }
 
     @Override
@@ -155,6 +163,7 @@ public class MainGame extends BasicGame {
                         tasks.remove(tasks.get(count));
                     }
                 }
+                processHauling();
             }
         }
     }
@@ -163,6 +172,9 @@ public class MainGame extends BasicGame {
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
         map.getTiledMap().render(-viewX, -viewY);
         for(Item item : map.getItems()) {
+            item.render(graphics);
+        }
+        for(Item item : map.getStockPiles()) {
             item.render(graphics);
         }
         for (int count = 0; count < characters.size(); count++) {
@@ -202,7 +214,26 @@ public class MainGame extends BasicGame {
         return characters;
     }
 
-    public static List<Task> getTasks() {
-        return tasks;
+    private void processHauling() {
+        for (int count = 0; count < map.getItems().size(); count++) {
+            if (StockableInterface.class.isAssignableFrom(map.getItems().get(count).getClass())) {
+                if(!map.getItems().get(count).isStored() && map.getItems().get(count).isAvailable()) {
+                    StockPile destinationPile = getOpenStockPile(((StockableInterface) map.getItems().get(count)).getStockType());
+                    if (destinationPile != null) {
+                        map.getItems().get(count).setAvailable(false);
+                        Task haulingTask = new HaulingTask(map.getItems().get(count), destinationPile);
+                        tasks.add(haulingTask);
+                    }
+                }
+            }
+        }
+    }
+    private StockPile getOpenStockPile(int stockType) {
+        for(StockPile stockPile : map.getStockPiles()) {
+            if(!stockPile.isFull() && stockPile.getStockType() == stockType) {
+                return stockPile;
+            }
+        }
+        return null;
     }
 }

@@ -17,6 +17,7 @@ public class Item implements Renderable {
     protected int y = 0;
     protected boolean stored = false;
     protected boolean selected = false;
+    protected boolean available = true;
     public Item(String name) {
         this.name = name;
         render = false;
@@ -51,5 +52,33 @@ public class Item implements Renderable {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isStored() {
+        return stored;
+    }
+
+    public void setStored(boolean stored) {
+        this.stored = stored;
+    }
+
+    public boolean isRender() {
+        return render;
+    }
+
+    public void setRender(boolean render) {
+        this.render = render;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }

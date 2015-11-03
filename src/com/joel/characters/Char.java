@@ -4,11 +4,15 @@ import com.joel.MainGame;
 import com.joel.Renderable;
 import com.joel.Updateable;
 import com.joel.characters.actions.Event;
+import com.joel.item.Item;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.util.pathfinding.Mover;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by 430009998 on 10/28/2015.
@@ -38,6 +42,7 @@ public abstract class Char implements Updateable,Renderable,Mover {
     protected int currentAnimation;
     protected int walkAnimationSpeed;
     protected boolean freeForAssignment = true;
+    protected List<Item> items = new LinkedList<Item>();
 
     protected int speed;
     protected int wits;
@@ -135,5 +140,9 @@ public abstract class Char implements Updateable,Renderable,Mover {
 
     public void setFreeForAssignment(boolean freeForAssignment) {
         this.freeForAssignment = freeForAssignment;
+    }
+
+    public List<Item> getItems() {
+        return items;
     }
 }

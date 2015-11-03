@@ -3,6 +3,7 @@ package com.joel.maps;
 import com.joel.MainGame;
 import com.joel.characters.Char;
 import com.joel.item.Item;
+import com.joel.item.misc.stock.StockPile;
 import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.util.pathfinding.PathFindingContext;
 import org.newdawn.slick.util.pathfinding.TileBasedMap;
@@ -20,6 +21,7 @@ public class Map implements TileBasedMap {
     private int maxXInPixels;
     private int maxYInPixels;
     private List<Item> items;
+    private List<StockPile> stockPiles = new LinkedList<StockPile>();
 
     public Map(TiledMap tiledMap) {
         this.tiledMap = tiledMap;
@@ -80,7 +82,7 @@ public class Map implements TileBasedMap {
         return items;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public List<StockPile> getStockPiles() {
+        return stockPiles;
     }
 }

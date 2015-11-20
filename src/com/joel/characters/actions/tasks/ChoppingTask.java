@@ -4,7 +4,6 @@ import com.joel.MainGame;
 import com.joel.characters.actions.MoveEvent;
 import com.joel.characters.actions.WaitEvent;
 import com.joel.item.Item;
-import com.joel.item.resources.Wood;
 
 /**
  * Created by 430009998 on 11/1/2015.
@@ -29,7 +28,7 @@ public class ChoppingTask extends Task {
                 waitingForEvent = true;
             } else if (step == 2) {
                 MainGame.map.getItems().remove(target);
-                Wood wood = new Wood();
+                Item wood = new Item("Wood");
                 wood.setX(target.getX());
                 wood.setY(target.getY());
                 MainGame.map.getItems().add(wood);

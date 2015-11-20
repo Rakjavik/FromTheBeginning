@@ -1,6 +1,5 @@
 package com.joel.item.misc.stock;
 
-import com.joel.MainGame;
 import com.joel.item.Item;
 
 /**
@@ -22,8 +21,8 @@ public class StockPile extends Item {
     public StockPile(int stockPileType) {
         super("Stock Pile - " + titles[stockPileType]);
         render = true;
-        image = MainGame.cachedImages[0];
         this.stockType = stockPileType;
+        imageKey = "stock.png";
     }
 
     public boolean isFull() {

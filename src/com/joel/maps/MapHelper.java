@@ -1,7 +1,7 @@
 package com.joel.maps;
 
 import com.joel.MainGame;
-import com.joel.item.resources.Tree;
+import com.joel.item.Item;
 import org.newdawn.slick.tiled.TiledMap;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -17,8 +17,9 @@ public class MapHelper {
         while(numberOfTrees != 0) {
             int x = ThreadLocalRandom.current().nextInt(0, map.getWidth()-1);
             int y = ThreadLocalRandom.current().nextInt(0, map.getHeight()-1);
+            System.out.println(x+"-" +y);
             if(!MainGame.map.blocked(null,x,y)) {
-                Tree tree = new Tree();
+                Item tree = MainGame.itemManager.getItemProperties("Tree");
                 tree.setX(x);
                 tree.setY(y);
                 MainGame.map.getItems().add(tree);

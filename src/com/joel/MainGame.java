@@ -1,5 +1,6 @@
 package com.joel;
 
+import com.google.gson.Gson;
 import com.joel.characters.Char;
 import com.joel.characters.actions.MoveEvent;
 import com.joel.characters.actions.WonderingEvent;
@@ -10,10 +11,10 @@ import com.joel.characters.classes.Paladin;
 import com.joel.characters.classes.Wizard;
 import com.joel.item.Item;
 import com.joel.item.misc.stock.StockPile;
-import com.joel.item.resources.ResourceInterface;
-import com.joel.item.resources.StockableInterface;
 import com.joel.maps.Map;
 import com.joel.maps.MapHelper;
+import com.joel.util.ImageManager;
+import com.joel.util.ItemManager;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
 
@@ -36,11 +37,11 @@ public class MainGame extends BasicGame {
     public static int tilesize;
     public static int viewX = 0;
     public static int viewY = 0;
-    public static Image cachedImages[];
     private int gameSpeed = 1;
     private int totalDelta = 0;
     private int selected = 0;
-
+    public static ItemManager itemManager = new ItemManager();
+    public static ImageManager imageManager = new ImageManager();
 
     public MainGame() {
         super("From the Beginning");
@@ -112,7 +113,7 @@ public class MainGame extends BasicGame {
             for(Item item : map.getItems()) {
                 if (x == item.getX() && y == item.getY()) {
                     try {
-                        if (((ResourceInterface) item).isChoppable()) {
+                        if (item.isChoppable()) {
                             item.setSelected(true);
                             ChoppingTask choppingTask = new ChoppingTask(item);
                             tasks.add(choppingTask);
@@ -130,10 +131,10 @@ public class MainGame extends BasicGame {
     public void init(GameContainer gameContainer) throws SlickException {
         Properties properties = getProperties();
         tilesize = Integer.parseInt(properties.getProperty("tilesize"));
-        cachedImages = new Image[1];
-        cachedImages[0] = new Image("images/stock.png",Color.white);
         map = new Map(new TiledMap("maps/test.tmx"));
         characters = new ArrayList<Char>();
+        imageManager.init();
+        itemManager.init();
         MapHelper.populateTrees(map.getTiledMap());
         loadTesting();
     }
@@ -143,6 +144,8 @@ public class MainGame extends BasicGame {
         stockPile.setX(1);
         stockPile.setY(1);
         map.getStockPiles().add(stockPile);
+        Gson gson = new Gson();
+
     }
 
     @Override
@@ -216,9 +219,9 @@ public class MainGame extends BasicGame {
 
     private void processHauling() {
         for (int count = 0; count < map.getItems().size(); count++) {
-            if (StockableInterface.class.isAssignableFrom(map.getItems().get(count).getClass())) {
+            if (map.getItems().get(count).isStockable()) {
                 if(!map.getItems().get(count).isStored() && map.getItems().get(count).isAvailable()) {
-                    StockPile destinationPile = getOpenStockPile(((StockableInterface) map.getItems().get(count)).getStockType());
+                    StockPile destinationPile = getOpenStockPile((map.getItems().get(count)).getStockType());
                     if (destinationPile != null) {
                         map.getItems().get(count).setAvailable(false);
                         destinationPile.setFull(true);

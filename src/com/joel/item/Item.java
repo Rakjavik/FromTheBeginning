@@ -4,7 +4,6 @@ import com.joel.MainGame;
 import com.joel.Renderable;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 
 /**
  * Created by 430009998 on 11/1/2015.
@@ -12,12 +11,16 @@ import org.newdawn.slick.Image;
 public class Item implements Renderable {
     protected String name;
     protected boolean render;
-    protected Image image;
+    protected String imageKey;
     protected int x = 0;
     protected int y = 0;
     protected boolean stored = false;
     protected boolean selected = false;
     protected boolean available = true;
+    protected int stockType = -1;
+    protected boolean stockable = false;
+    protected boolean choppable = false;
+
     public Item(String name) {
         this.name = name;
         render = false;
@@ -26,7 +29,7 @@ public class Item implements Renderable {
     @Override
     public void render(Graphics graphics) {
         if (render) {
-            graphics.drawImage(image, x * MainGame.tilesize - MainGame.viewX, y * MainGame.tilesize - MainGame.viewY);
+            graphics.drawImage(MainGame.imageManager.getImage(imageKey), x * MainGame.tilesize - MainGame.viewX, y * MainGame.tilesize - MainGame.viewY);
             if(selected) {
                 graphics.setColor(Color.red);
                 graphics.drawRect(x * MainGame.tilesize - MainGame.viewX, y * MainGame.tilesize - MainGame.viewY,MainGame.tilesize,MainGame.tilesize);
@@ -80,5 +83,17 @@ public class Item implements Renderable {
 
     public void setAvailable(boolean available) {
         this.available = available;
+    }
+
+    public int getStockType() {
+        return stockType;
+    }
+
+    public boolean isStockable() {
+        return stockable;
+    }
+
+    public boolean isChoppable() {
+        return choppable;
     }
 }

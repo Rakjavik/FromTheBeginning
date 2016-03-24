@@ -29,8 +29,8 @@ import java.util.Properties;
  */
 public class MainGame extends BasicGame {
 
-    private static List<Char> characters;
-    private static List<Task> tasks = new LinkedList<Task>();
+    private static final List<Char> characters = new LinkedList<Char>();
+    private static final List<Task> tasks = new LinkedList<Task>();
     public static int resX;
     public static int resY;
     public static Map map;
@@ -111,6 +111,7 @@ public class MainGame extends BasicGame {
         }
         if (button == Input.MOUSE_RIGHT_BUTTON) {
             for(Item item : map.getItems()) {
+                System.out.println("DEBUG " + x + "-" + y + "," + item.getX() + "-" + item.getY());
                 if (x == item.getX() && y == item.getY()) {
                     try {
                         if (item.isChoppable()) {
@@ -132,10 +133,9 @@ public class MainGame extends BasicGame {
         Properties properties = getProperties();
         tilesize = Integer.parseInt(properties.getProperty("tilesize"));
         map = new Map(new TiledMap("maps/test.tmx"));
-        characters = new ArrayList<Char>();
         imageManager.init();
         itemManager.init();
-        MapHelper.populateTrees(map.getTiledMap());
+        map = MapHelper.populateTrees(map);
         loadTesting();
     }
 
@@ -144,7 +144,10 @@ public class MainGame extends BasicGame {
         stockPile.setX(1);
         stockPile.setY(1);
         map.getStockPiles().add(stockPile);
-        Gson gson = new Gson();
+        Item item = itemManager.getItemProperties("Tree");
+        item.setX(4);
+        item.setY(3);
+        map.getItems().add(item);
 
     }
 
@@ -224,7 +227,6 @@ public class MainGame extends BasicGame {
                     StockPile destinationPile = getOpenStockPile((map.getItems().get(count)).getStockType());
                     if (destinationPile != null) {
                         map.getItems().get(count).setAvailable(false);
-                        destinationPile.setFull(true);
                         Task haulingTask = new HaulingTask(map.getItems().get(count), destinationPile);
                         tasks.add(haulingTask);
                     }

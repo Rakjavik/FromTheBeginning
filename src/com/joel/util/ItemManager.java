@@ -21,6 +21,7 @@ public class ItemManager {
     }
 
     public Item getItemProperties(String key) {
-        return items.get(key);
+        Item item = items.get(key);
+        return (Item) item.clone();
     }
 }

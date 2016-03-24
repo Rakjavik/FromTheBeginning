@@ -1,0 +1,23 @@
+[
+	{
+		"name":"Wood",
+		"render":true,
+		"selected":false,
+		"available":true,
+		"stockType":0,
+		"stockable":true,
+        "stackSizeMax":10,
+        "stackSize":1,
+        "imageKey":"log.png",
+        "weight":10
+	},
+	{
+		"name":"Tree",
+	    "choppable":true,
+		"render":true,
+		"available":true,
+		"stockType":-1,
+		"stockable":false,
+		"imageKey":"tree.png"
+	}
+]

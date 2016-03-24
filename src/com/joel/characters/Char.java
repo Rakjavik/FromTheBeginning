@@ -43,6 +43,7 @@ public abstract class Char implements Updateable,Renderable,Mover {
     protected int walkAnimationSpeed;
     protected boolean freeForAssignment = true;
     protected List<Item> items = new LinkedList<Item>();
+    protected int carryingWeight = 0;
 
     protected int speed;
     protected int wits;
@@ -144,5 +145,9 @@ public abstract class Char implements Updateable,Renderable,Mover {
 
     public List<Item> getItems() {
         return items;
+    }
+
+    public int getCarryingWeight() {
+        return carryingWeight;
     }
 }

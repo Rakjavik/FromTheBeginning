@@ -9,9 +9,9 @@ public class StockPile extends Item {
 
     public static final int STOCK_TYPE_CRAFT_MATERIAL = 0;
 
-    protected boolean isFull = false;
-    protected int stockType;
-    protected static String[] titles;
+    private int stockType;
+    private static String[] titles;
+    private Item stockedItem = null;
 
     static {
         titles = new String[1];
@@ -26,14 +26,15 @@ public class StockPile extends Item {
     }
 
     public boolean isFull() {
-        return isFull;
-    }
-
-    public void setFull(boolean isFull) {
-        this.isFull = isFull;
+        if(stockedItem == null) return false;
+        if(stockedItem.getStackSize() < stockedItem.getStackSizeMax()) {
+            return false;
+        }
+        return true;
     }
 
     public int getStockType() {
         return stockType;
     }
+
 }

@@ -28,7 +28,7 @@ public class ChoppingTask extends Task {
                 waitingForEvent = true;
             } else if (step == 2) {
                 MainGame.map.getItems().remove(target);
-                Item wood = new Item("Wood");
+                Item wood = MainGame.itemManager.getItemProperties("Wood");
                 wood.setX(target.getX());
                 wood.setY(target.getY());
                 MainGame.map.getItems().add(wood);

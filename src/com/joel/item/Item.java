@@ -8,7 +8,7 @@ import org.newdawn.slick.Graphics;
 /**
  * Created by 430009998 on 11/1/2015.
  */
-public class Item implements Renderable {
+public class Item implements Renderable, Cloneable {
     protected String name;
     protected boolean render;
     protected String imageKey;
@@ -19,7 +19,10 @@ public class Item implements Renderable {
     protected boolean available = true;
     protected int stockType = -1;
     protected boolean stockable = false;
+    protected int stackSizeMax = 1;
+    protected int stackSize = 1;
     protected boolean choppable = false;
+    protected int weight = 0;
 
     public Item(String name) {
         this.name = name;
@@ -35,6 +38,13 @@ public class Item implements Renderable {
                 graphics.drawRect(x * MainGame.tilesize - MainGame.viewX, y * MainGame.tilesize - MainGame.viewY,MainGame.tilesize,MainGame.tilesize);
             }
         }
+    }
+
+    public Object clone()  {
+        try {
+            return super.clone();
+        } catch(CloneNotSupportedException ex){ex.printStackTrace();}
+        return null;
     }
 
     public int getX() {
@@ -95,5 +105,15 @@ public class Item implements Renderable {
 
     public boolean isChoppable() {
         return choppable;
+    }
+
+    public int getStackSizeMax() { return stackSizeMax; }
+
+    public int getStackSize() {
+        return stackSize;
+    }
+
+    public void setStackSize(int stackSize) {
+        this.stackSize = stackSize;
     }
 }

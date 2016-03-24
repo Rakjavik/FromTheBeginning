@@ -1,9 +1,8 @@
 package com.joel.maps;
 
 import com.joel.MainGame;
-import com.joel.item.Item;
 import org.newdawn.slick.tiled.TiledMap;
-
+import com.joel.item.Item;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -11,20 +10,21 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class MapHelper {
 
-    public static void populateTrees(TiledMap map) {
-        int percentage = Integer.parseInt(map.getMapProperty("trees","0"));
-        int numberOfTrees = (int) ((map.getHeight()*map.getWidth())*(percentage*.01));
+    public static Map populateTrees(Map map) {
+        TiledMap tiledMap = map.getTiledMap();
+        int percentage = Integer.parseInt(tiledMap.getMapProperty("trees", "0"));
+        int numberOfTrees = (int) ((tiledMap.getHeight()*tiledMap.getWidth())*(percentage*.01));
         while(numberOfTrees != 0) {
-            int x = ThreadLocalRandom.current().nextInt(0, map.getWidth()-1);
-            int y = ThreadLocalRandom.current().nextInt(0, map.getHeight()-1);
-            System.out.println(x+"-" +y);
-            if(!MainGame.map.blocked(null,x,y)) {
+            int x = ThreadLocalRandom.current().nextInt(0, tiledMap.getWidth()-1);
+            int y = ThreadLocalRandom.current().nextInt(0, tiledMap.getHeight()-1);
+            if(!map.blocked(null,x,y)) {
                 Item tree = MainGame.itemManager.getItemProperties("Tree");
                 tree.setX(x);
                 tree.setY(y);
-                MainGame.map.getItems().add(tree);
+                map.getItems().add(tree);
                 numberOfTrees--;
             }
         }
+        return map;
     }
 }

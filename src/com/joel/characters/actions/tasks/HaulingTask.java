@@ -1,7 +1,9 @@
 package com.joel.characters.actions.tasks;
 
+import com.joel.MainGame;
 import com.joel.characters.actions.MoveEvent;
 import com.joel.item.Item;
+import com.joel.item.ItemHelper;
 import com.joel.item.misc.stock.StockPile;
 
 /**
@@ -40,9 +42,11 @@ public class HaulingTask extends Task {
                 itemToBeHauled.setY(destinationStockPile.getY());
                 itemToBeHauled.setRender(true);
                 itemToBeHauled.setAvailable(true);
-                destinationStockPile.setFull(true);
-                taskComplete = true;
-                assignedCharacter.getItems().remove(itemToBeHauled);
+                boolean success = ItemHelper.stockItem(itemToBeHauled,destinationStockPile, MainGame.map.getItems());
+                if(success) {
+                    taskComplete = true;
+                    assignedCharacter.getItems().remove(itemToBeHauled);
+                }
             }
         }
     }

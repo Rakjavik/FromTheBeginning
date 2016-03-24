@@ -1,5 +1,6 @@
 package com.joel.util;
 
+import com.joel.MainGame;
 import org.apache.commons.io.FileUtils;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
@@ -28,7 +29,8 @@ public class ImageManager {
         while(iterator.hasNext()) {
             File currentFile = (File) iterator.next();
             if(currentFile.isFile()) {
-                images.put(currentFile.getName(),new Image(currentFile.getAbsolutePath(), Color.white));
+                images.put(currentFile.getName(),new Image(currentFile.getAbsolutePath(), Color.white).
+                        getScaledCopy(MainGame.tilesize,MainGame.tilesize));
             }
         }
     }

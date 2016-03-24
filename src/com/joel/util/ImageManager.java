@@ -30,7 +30,9 @@ public class ImageManager {
             File currentFile = (File) iterator.next();
             if(currentFile.isFile()) {
                 images.put(currentFile.getName(),new Image(currentFile.getAbsolutePath(), Color.white).
-                        getScaledCopy(MainGame.tilesize,MainGame.tilesize));
+                        getScaledCopy(MainGame.tilesize, MainGame.tilesize));
+                //images.put(currentFile.getName() + "Q",new Image(currentFile.getAbsolutePath(), Color.white).
+                  //      getScaledCopy(MainGame.tilesize/2,MainGame.tilesize/4));
             }
         }
     }

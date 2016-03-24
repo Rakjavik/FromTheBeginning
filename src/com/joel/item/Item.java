@@ -116,4 +116,8 @@ public class Item implements Renderable, Cloneable {
     public void setStackSize(int stackSize) {
         this.stackSize = stackSize;
     }
+
+    public String getImageKey() {
+        return imageKey;
+    }
 }

@@ -8,6 +8,7 @@ import org.newdawn.slick.util.pathfinding.Path;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by 430009998 on 10/29/2015.
@@ -20,10 +21,9 @@ public class MoveEvent extends Event {
     private int timesToWait;
     private int destX;
     private int destY;
-    private int pathingFailures = 0;
     private Char target = null;
     private boolean following = false;
-
+    private int pathingFailures = 0;
     private static final int MAX_NUM_OF_PATHING_FAILURES = 20;
 
     public MoveEvent(Char character,Char target) {
@@ -68,15 +68,20 @@ public class MoveEvent extends Event {
                 Path pathDown = pathFinder.findPath(character, character.getX(), character.getY(), target.getX(), target.getY() + 1);
                 if (pathDown != null) possiblePaths.add(pathDown);
             }
-            int steps = MainGame.map.getHeightInTiles()*MainGame.map.getWidthInTiles();
-            for(Path newPath : possiblePaths) {
-                if (newPath.getLength() < steps) {
-                    path = newPath;
-                    steps = path.getLength();
+            if(pathingFailures > 5) {
+                int steps = MainGame.map.getHeightInTiles() * MainGame.map.getWidthInTiles();
+                for (Path newPath : possiblePaths) {
+                    if (newPath.getLength() < steps) {
+                        path = newPath;
+                        steps = path.getLength();
+                    }
                 }
+            } else {
+                int randomInt = ThreadLocalRandom.current().nextInt(0,4);
+                path = possiblePaths.get(randomInt);
             }
-        }
 
+        }
         else {
             path = pathFinder.findPath(character, character.getX(), character.getY(), destX, destY);
         }
@@ -121,7 +126,7 @@ public class MoveEvent extends Event {
             pathingFailures = 0;
         } else {
             timesWaited++;
-            WaitEvent waitEvent = new WaitEvent(character,this,1);
+            WaitEvent waitEvent = new WaitEvent(character,this,ThreadLocalRandom.current().nextInt(1,3));
             character.setCurrentEvent(waitEvent);
             // Plus 4 is the same direction but being still //
             character.setCurrentAnimation(character.getDirection()+4);

@@ -40,5 +40,6 @@ public class Paladin extends Char {
         animations[Char.STAND_LEFT] = new Animation(images,walkAnimationSpeed);
         images[0] = spriteSheet.getSprite(2,1);
         animations[Char.STAND_RIGHT] = new Animation(images,walkAnimationSpeed);
+        protraitKey = "paladin.png";
     }
 }

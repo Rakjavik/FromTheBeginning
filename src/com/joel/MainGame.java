@@ -44,7 +44,6 @@ public class MainGame extends BasicGame {
     public static Object selected;
     public static ItemManager itemManager = new ItemManager();
     public static ImageManager imageManager = new ImageManager();
-
     public MainGame() {
         super("From the Beginning");
     }
@@ -167,10 +166,10 @@ public class MainGame extends BasicGame {
                     }
                 }
                 processHauling();
-                for (Menu menu : menus) {
-                    menu.update(i);
-                }
             }
+        }
+        for (Menu menu : menus) {
+            menu.update(i);
         }
     }
 

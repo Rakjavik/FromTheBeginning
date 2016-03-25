@@ -27,12 +27,14 @@ public abstract class Task implements Updateable {
     @Override
     public void update(int delta) {
         timeSinceLastUpdate += delta;
+        // Assign character to task //
         if(timeSinceLastUpdate > priority && assignedCharacter == null) {
             assignedCharacter = TaskHelper.findCharForTask(this);
             timeSinceLastUpdate = 0;
             return;
         }
         if(assignedCharacter != null && timeSinceLastUpdate > assignedCharacter.getSpeed()) {
+            // After each event completes it goes to Idle, wait for that event //
             if (assignedCharacter.getCurrentEvent() instanceof IdleEvent) {
                 step++;
                 waitingForEvent = false;

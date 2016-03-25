@@ -5,10 +5,7 @@ import com.joel.Renderable;
 import com.joel.Updateable;
 import com.joel.characters.actions.Event;
 import com.joel.item.Item;
-import org.newdawn.slick.Animation;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.*;
 import org.newdawn.slick.util.pathfinding.Mover;
 
 import java.util.LinkedList;
@@ -44,9 +41,11 @@ public abstract class Char implements Updateable,Renderable,Mover {
     protected boolean freeForAssignment = true;
     protected List<Item> items = new LinkedList<Item>();
     protected int carryingWeight = 0;
+    protected String protraitKey;
 
     protected int speed;
     protected int wits;
+
 
     public Char(String name) {
         this.name = name;
@@ -147,7 +146,19 @@ public abstract class Char implements Updateable,Renderable,Mover {
         return items;
     }
 
+    public int getCurrentAnimation() {
+        return currentAnimation;
+    }
+
+    public Animation[] getAnimations() {
+        return animations;
+    }
+
     public int getCarryingWeight() {
         return carryingWeight;
+    }
+
+    public String getProtraitKey() {
+        return protraitKey;
     }
 }

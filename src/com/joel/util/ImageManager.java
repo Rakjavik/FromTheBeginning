@@ -35,6 +35,7 @@ public class ImageManager {
                   //      getScaledCopy(MainGame.tilesize/2,MainGame.tilesize/4));
             }
         }
+        System.out.println("Done loading images");
     }
     public Image getImage(String key) {
         return images.get(key);

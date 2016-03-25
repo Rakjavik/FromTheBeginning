@@ -23,7 +23,7 @@ public class Item implements Renderable, Cloneable {
     protected int stackSize = 1;
     protected boolean choppable = false;
     protected int weight = 0;
-
+    protected String description;
     public Item(String name) {
         this.name = name;
         render = false;
@@ -119,5 +119,13 @@ public class Item implements Renderable, Cloneable {
 
     public String getImageKey() {
         return imageKey;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

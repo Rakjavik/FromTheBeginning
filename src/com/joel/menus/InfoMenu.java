@@ -1,13 +1,17 @@
 package com.joel.menus;
 
 import com.joel.MainGame;
+import com.joel.characters.Char;
 import com.joel.item.Item;
+import org.newdawn.slick.*;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * Created on 3/23/2016 by Joel Blanchette.
@@ -16,7 +20,7 @@ import java.util.List;
 public class InfoMenu extends Menu {
 
     private Object objectInFocus = null;
-    private List<InfoSection> infoSections;
+    private Map<String,InfoSection> infoSections;
 
     public InfoMenu() {
         super("Information Window");
@@ -28,23 +32,37 @@ public class InfoMenu extends Menu {
         backGroundColor = Color.blue;
         enabled = true;
         buttons = new MenuButton[0];
-        infoSections = new ArrayList<InfoSection>();
+        infoSections = new HashMap<String, InfoSection>();
+        InfoSection summarySection = new InfoSection(this);
+        infoSections.put("summary", summarySection);
     }
 
     @Override
     public void update(int delta) {
         super.update(delta);
         if(objectInFocus != MainGame.selected) {
+            InfoSection mainDisplay = infoSections.get("summary");
+            mainDisplay.setEnabled(true);
             objectInFocus = MainGame.selected;
             if(objectInFocus instanceof Item) {
-                InfoSection mainDisplay = new InfoSection(this);
                 mainDisplay.setImageKey(((Item) objectInFocus).getImageKey());
-                mainDisplay.setX(x);
-                mainDisplay.setY(y);
+                mainDisplay.setImgPosition(new Point(x, y));
+                mainDisplay.setTxtPosition(new Point(x,y+1));
                 mainDisplay.setColor(Color.black);
-                String textToDisplay = ((Item) objectInFocus).getName() + ", Stockable ? " + ((Item) objectInFocus).isStockable();
+                mainDisplay.setFontSize(16);
+                String textToDisplay = "Item - " + ((Item) objectInFocus).getName() + " \n Description: \n " + ((Item) objectInFocus).getDescription();
                 mainDisplay.setTextToDisplay(textToDisplay);
-                infoSections.add(mainDisplay);
+            }
+            if(objectInFocus instanceof Char) {
+                mainDisplay.setImageKey(((Char) objectInFocus).getProtraitKey());
+                mainDisplay.setImgPosition(new Point(x, y));
+                mainDisplay.setTxtPosition(new Point(x,y+1));
+                mainDisplay.setColor(Color.black);
+                mainDisplay.setFontSize(16);
+                String textToDisplay = objectInFocus.getClass().getSimpleName() + " - " + ((Char) objectInFocus).getName() + " \n Speed - " +
+                        ((Char) objectInFocus).getSpeed() + " \n Wits - " + ((Char) objectInFocus).getWits();
+                mainDisplay.setTextToDisplay(textToDisplay);
+
             }
         }
     }
@@ -52,8 +70,8 @@ public class InfoMenu extends Menu {
     @Override
     public void render(Graphics graphics) {
         super.render(graphics);
-        for(InfoSection section : infoSections) {
-            section.render(graphics);
+        for(String key : infoSections.keySet()) {
+            infoSections.get(key).render(graphics);
         }
     }
 }

@@ -171,9 +171,16 @@ public class MainGame extends BasicGame {
         if (click instanceof Item) {
             if (button == Input.MOUSE_RIGHT_BUTTON) {
                 if (((Item) click).isChoppable()) {
-                    ((Item) click).setSelected(true);
-                    ChoppingTask choppingTask = new ChoppingTask((Item) click);
-                    tasks.add(choppingTask);
+                    if (((Item) click).isSelected()) {
+                        Task chopCancelTask = Util.getTaskByTarget(click, tasks);
+                        chopCancelTask.cleanup();
+                        tasks.remove(chopCancelTask);
+                        ((Item) click).setSelected(false);
+                    } else {
+                        ((Item) click).setSelected(true);
+                        ChoppingTask choppingTask = new ChoppingTask((Item) click);
+                        tasks.add(choppingTask);
+                    }
                 }
             } else if (button == Input.MOUSE_LEFT_BUTTON) {
                 selected = click;

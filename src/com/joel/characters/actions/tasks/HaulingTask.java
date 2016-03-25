@@ -11,17 +11,17 @@ import com.joel.item.misc.stock.StockPile;
  */
 public class HaulingTask extends Task {
     private Item itemToBeHauled;
-    private StockPile destinationStockPile;
     public HaulingTask(Item item,StockPile stockPile) {
         super("Hauling - " + item.getName());
         this.itemToBeHauled = item;
-        this.destinationStockPile = stockPile;
+        this.target = stockPile;
     }
 
     @Override
     public void update(int delta) {
         super.update(delta);
         if (!waitingForEvent && assignedCharacter != null) {
+            StockPile targetStockPile = (StockPile) target;
             if(step == 0) {
                 // Make sure the target location isn't identical to the source //
                 if (assignedCharacter.getX() != itemToBeHauled.getX() && assignedCharacter.getY() != itemToBeHauled.getY()) {
@@ -33,21 +33,31 @@ public class HaulingTask extends Task {
                 assignedCharacter.getItems().add(itemToBeHauled);
                 itemToBeHauled.setStored(true);
                 itemToBeHauled.setRender(false);
-                //TODO add to char inventory
-                MoveEvent moveEvent = new MoveEvent(assignedCharacter,destinationStockPile.getX(),destinationStockPile.getY());
+                MoveEvent moveEvent = new MoveEvent(assignedCharacter, targetStockPile.getX(), targetStockPile.getY());
                 assignedCharacter.setCurrentEvent(moveEvent);
                 waitingForEvent = true;
             } else if (step == 2) {
-                itemToBeHauled.setX(destinationStockPile.getX());
-                itemToBeHauled.setY(destinationStockPile.getY());
+                itemToBeHauled.setX(targetStockPile.getX());
+                itemToBeHauled.setY(targetStockPile.getY());
                 itemToBeHauled.setRender(true);
                 itemToBeHauled.setAvailable(true);
-                boolean success = ItemHelper.stockItem(itemToBeHauled,destinationStockPile, MainGame.map.getItems());
+                boolean success = ItemHelper.stockItem(itemToBeHauled, targetStockPile, MainGame.map.getItems());
                 if(success) {
                     taskComplete = true;
                     assignedCharacter.getItems().remove(itemToBeHauled);
                 }
             }
+        }
+    }
+
+    @Override
+    public void cleanup() {
+        super.cleanup();
+        itemToBeHauled.setAvailable(true);
+        itemToBeHauled.setRender(true);
+        if (assignedCharacter != null) {
+            itemToBeHauled.setX(assignedCharacter.getX());
+            itemToBeHauled.setY(assignedCharacter.getY());
         }
     }
 }

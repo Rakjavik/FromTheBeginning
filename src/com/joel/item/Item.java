@@ -125,6 +125,10 @@ public class Item implements Renderable, Cloneable {
         return weight;
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
     public String getDescription() {
         return description;
     }

@@ -1,6 +1,7 @@
 package com.joel.util;
 
 import com.joel.characters.Char;
+import com.joel.characters.actions.tasks.Task;
 import com.joel.item.Item;
 import com.joel.maps.Map;
 import com.joel.menus.Menu;
@@ -14,6 +15,18 @@ import java.util.List;
  */
 public class Util {
     public static Object whatDidIJustClickOn(int xTile, int yTile,List<Char> characters,Map map,Menu[] menus) {
+        for (Menu menu : menus) {
+            for (MenuButton button : menu.getButtons()) {
+                if (xTile == button.getX() && yTile == button.getY()) {
+                    return button;
+                }
+            }
+            if (xTile >= menu.getxInTiles() && xTile <= menu.getxInTiles() + menu.getSizeXInTiles()) {
+                if (yTile >= menu.getyInTiles() && yTile <= menu.getyInTiles() + menu.getSizeYInTiles()) {
+                    return menu;
+                }
+            }
+        }
         for (Char character : characters) {
             if (character.getX() == xTile && character.getY() == yTile) {
                 return character;
@@ -29,18 +42,16 @@ public class Util {
                 return item;
             }
         }
-        for (Menu menu : menus) {
-            for (MenuButton button : menu.getButtons()) {
-                if (xTile == button.getX() && yTile == button.getY()) {
-                    return button;
-                }
-            }
-            if(xTile >= menu.getxInTiles() && xTile <= menu.getxInTiles()+menu.getSizeXInTiles()) {
-                if(yTile >= menu.getyInTiles() && yTile <= menu.getyInTiles()+menu.getSizeYInTiles()) {
-                    return menu;
-                }
+        return null;
+    }
+
+    public static Task getTaskByTarget(Object target, List<Task> tasks) {
+        for (Task task : tasks) {
+            if (task.getTarget().equals(target)) {
+                return task;
             }
         }
         return null;
     }
+
 }

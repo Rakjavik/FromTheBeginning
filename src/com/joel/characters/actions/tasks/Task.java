@@ -18,6 +18,7 @@ public abstract class Task implements Updateable {
     private int timeSinceLastUpdate = 0;
     protected boolean waitingForEvent = false;
     protected boolean taskComplete = false;
+    protected Object target;
 
     public Task(String name) {
         this.name = name;
@@ -42,11 +43,25 @@ public abstract class Task implements Updateable {
         }
     }
 
+    public void cleanup() {
+        if (assignedCharacter != null)
+            assignedCharacter.setFreeForAssignment(true);
+    }
+
     public boolean isTaskComplete() {
         return taskComplete;
+    }
+
+    public Object getTarget() {
+        return target;
+    }
+
+    public void setTarget(Object target) {
+        this.target = target;
     }
 
     public Char getAssignedCharacter() {
         return assignedCharacter;
     }
+
 }

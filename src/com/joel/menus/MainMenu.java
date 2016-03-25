@@ -12,14 +12,14 @@ public class MainMenu extends Menu {
 
     public MainMenu() {
         super("Main Menu");
-        sizeX = MainGame.resX;
-        sizeY = MainGame.resY/6;
-        x = 0;
+        sizeXInTiles = MainGame.resX;
+        sizeYInTiles = MainGame.resY/6;
+        xInTiles = 0;
         int heightInTiles = MainGame.resY/MainGame.tilesize;
-        y = heightInTiles - heightInTiles/6;
+        yInTiles = heightInTiles - heightInTiles/6;
         MenuButton button = new MenuButton("Create Stockpile",this);
         button.setX(0);
-        button.setY(this.y);
+        button.setY(this.yInTiles);
         button.setImageKey("stock.png");
         buttons[0] = button;
         backGroundColor = Color.white;

@@ -20,11 +20,12 @@ public class InfoSection implements Renderable {
     private Point txtPosition;
     private Color color;
     private String imageKey;
-    private InfoMenu parent;
+    private Menu parent;
     private Font font;
-    private boolean enabled = false;
+    private boolean textEnabled = false;
+    private boolean imageEnabled = false;
 
-    public InfoSection(InfoMenu parent) {
+    public InfoSection(Menu parent) {
         this.parent = parent;
         java.awt.Font font = new java.awt.Font("Verdana", java.awt.Font.BOLD, 16);
         TrueTypeFont ttf = new TrueTypeFont(font, true);
@@ -33,20 +34,23 @@ public class InfoSection implements Renderable {
 
     @Override
     public void render(Graphics graphics) {
-        if(enabled) {
-            graphics.setColor(color);
-            graphics.setFont(font);
+        graphics.setColor(color);
+        graphics.setFont(font);
+        if(textEnabled)
             drawStrings(graphics);
+        if(imageEnabled) {
             Image image = MainGame.imageManager.getImage(imageKey);
-            int centerOffset = (parent.getSizeX() - image.getWidth())/2;
-            graphics.drawImage(MainGame.imageManager.getImage(imageKey), imgPosition.x * MainGame.tilesize + centerOffset, imgPosition.y * MainGame.tilesize);
+            int centerOffset = (parent.getSizeXInTiles() * MainGame.tilesize - image.getWidth()) / 2;
+            graphics.drawImage(MainGame.imageManager.getImage(imageKey), (parent.getxInTiles()+imgPosition.x) * MainGame.tilesize + centerOffset,
+                    (parent.getyInTiles()+imgPosition.y) * MainGame.tilesize);
         }
+
     }
 
     private void drawStrings(Graphics graphics) {
         int txtWidth = font.getWidth(textToDisplay);
-        if(txtWidth < parent.getSizeX()) {
-            graphics.drawString(textToDisplay,txtPosition.x*MainGame.tilesize,txtPosition.y*MainGame.tilesize);
+        if(txtWidth < parent.getSizeXInTiles()) {
+            graphics.drawString(textToDisplay,(parent.getxInTiles()+txtPosition.x)*MainGame.tilesize,(parent.getyInTiles()+txtPosition.y)*MainGame.tilesize);
             return;
         }
         int indexOfStrings = 0;
@@ -56,18 +60,19 @@ public class InfoSection implements Renderable {
         int count = 0;
         while(moreLines) {
             for(int stringI = indexOfStrings; stringI < strings.length; stringI++) {
-                if(parent.getSizeX() < font.getWidth(strings[stringI] + " ")+35) {
-                    System.out.println("ERROR InfoSection line too long - " + strings[stringI]);
+                if(parent.getSizeXInTiles()*MainGame.tilesize < font.getWidth(strings[stringI] + " ")+35) {
+                    System.out.println("ERROR InfoSection line too long - " + strings[stringI] + " Size of menu - " + parent.getSizeXInTiles());
                     System.exit(5);
                 }
                 // 35 is the tweaked number to make it look better when centering //
-                if(font.getWidth(builder.toString()+strings[stringI] + " ")+35 < parent.getSizeX()
+                if(font.getWidth(builder.toString()+strings[stringI] + " ")+35 < parent.getSizeXInTiles()*32
                         && !strings[stringI].contains("\n")) {
                     builder = builder.append(strings[stringI] + " ");
                     indexOfStrings++;
                 } else {
-                    int centerOffset = (parent.getSizeX()-font.getWidth(builder.toString()))/2;
-                    graphics.drawString(builder.toString(),txtPosition.x*MainGame.tilesize+centerOffset,(txtPosition.y+count)*MainGame.tilesize);
+                    int centerOffset = (parent.getSizeXInTiles()*MainGame.tilesize-font.getWidth(builder.toString()))/2;
+                    graphics.drawString(builder.toString(),(parent.getxInTiles()+txtPosition.x)*MainGame.tilesize+centerOffset,
+                            (parent.getyInTiles()+txtPosition.y+count)*MainGame.tilesize);
                     builder = new StringBuilder();
                     if(strings[stringI].contains("\n")) {
                         indexOfStrings++;
@@ -78,8 +83,9 @@ public class InfoSection implements Renderable {
             }
             if(indexOfStrings == strings.length) {
                 moreLines = false;
-                int centerOffset = (parent.getSizeX()-font.getWidth(builder.toString()))/2;
-                graphics.drawString(builder.toString(), txtPosition.x * MainGame.tilesize+centerOffset, (txtPosition.y + count) * MainGame.tilesize);
+                int centerOffset = (parent.getSizeXInTiles()*MainGame.tilesize-font.getWidth(builder.toString()))/2;
+                graphics.drawString(builder.toString(), (parent.getxInTiles()+txtPosition.x) * MainGame.tilesize+centerOffset,
+                        (parent.getyInTiles() + txtPosition.y + count) * MainGame.tilesize);
             }
         }
     }
@@ -94,14 +100,6 @@ public class InfoSection implements Renderable {
 
     public void setColor(Color color) {
         this.color = color;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 
     public void setImgPosition(Point imgPosition) {
@@ -120,5 +118,13 @@ public class InfoSection implements Renderable {
         java.awt.Font font = new java.awt.Font("Verdana", java.awt.Font.PLAIN, size);
         TrueTypeFont ttf = new TrueTypeFont(font, true);
         this.font = ttf;
+    }
+
+    public void setTextEnabled(boolean textEnabled) {
+        this.textEnabled = textEnabled;
+    }
+
+    public void setImageEnabled(boolean imageEnabled) {
+        this.imageEnabled = imageEnabled;
     }
 }

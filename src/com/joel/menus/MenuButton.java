@@ -25,7 +25,7 @@ public class MenuButton implements Renderable {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(MainGame.imageManager.getImage(imageKey),x*BUTTONSIZE,parent.getY()*MainGame.tilesize);
+        graphics.drawImage(MainGame.imageManager.getImage(imageKey),x*BUTTONSIZE,parent.getyInTiles()*MainGame.tilesize);
     }
 
     public int getX() {

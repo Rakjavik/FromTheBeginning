@@ -11,15 +11,14 @@ import org.newdawn.slick.Graphics;
  * Created by 430009998 on 11/2/2015.
  */
 public class Menu implements Renderable,Updateable{
-    protected int sizeX;
-    protected int sizeY;
-    protected int x;
-    protected int y;
+    protected int sizeXInTiles;
+    protected int sizeYInTiles;
+    protected int xInTiles;
+    protected int yInTiles;
     protected String name;
-    protected Font font;
-    protected boolean enabled = true;
     protected MenuButton[] buttons = new MenuButton[1];
     protected Color backGroundColor = Color.black;
+    protected int minimumSizeInTiles;
 
     public Menu(String name) {
         this.name = name;
@@ -28,7 +27,7 @@ public class Menu implements Renderable,Updateable{
     @Override
     public void render(Graphics graphics) {
         graphics.setColor(backGroundColor);
-        graphics.fillRect(x* MainGame.tilesize,y*MainGame.tilesize,sizeX,sizeY);
+        graphics.fillRect(xInTiles * MainGame.tilesize, yInTiles *MainGame.tilesize, sizeXInTiles *MainGame.tilesize, sizeYInTiles *MainGame.tilesize);
     }
 
     @Override
@@ -36,59 +35,46 @@ public class Menu implements Renderable,Updateable{
 
     }
 
-    public int getSizeX() {
-        return sizeX;
+    public int getSizeXInTiles() {
+        return sizeXInTiles;
     }
 
-    public void setSizeX(int sizeX) {
-        this.sizeX = sizeX;
+    public void setSizeXInTiles(int sizeXInTiles) {
+        if(sizeXInTiles >= minimumSizeInTiles)
+            this.sizeXInTiles = sizeXInTiles;
     }
 
-    public int getSizeY() {
-        return sizeY;
+    public int getSizeYInTiles() {
+        return sizeYInTiles;
     }
 
-    public void setSizeY(int sizeY) {
-        this.sizeY = sizeY;
+    public void setSizeYInTiles(int sizeYInTiles) {
+        if(sizeYInTiles >= minimumSizeInTiles)
+            this.sizeYInTiles = sizeYInTiles;
     }
 
-    public int getX() {
-        return x;
+    public int getxInTiles() {
+        return xInTiles;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setxInTiles(int xInTiles) {
+        this.xInTiles = xInTiles;
     }
 
-    public int getY() {
-        return y;
+    public int getyInTiles() {
+        return yInTiles;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setyInTiles(int yInTiles) {
+        this.yInTiles = yInTiles;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setFont(Font font) {
-        this.font = font;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
     public MenuButton[] getButtons() {
         return buttons;
     }
 
-    public void setBackGroundColor(Color backGroundColor) {
-        this.backGroundColor = backGroundColor;
-    }
 }

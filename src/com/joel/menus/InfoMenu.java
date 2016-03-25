@@ -3,9 +3,7 @@ package com.joel.menus;
 import com.joel.MainGame;
 import com.joel.characters.Char;
 import com.joel.item.Item;
-import org.newdawn.slick.*;
 import org.newdawn.slick.Color;
-import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
 
 import java.awt.*;
@@ -25,12 +23,12 @@ public class InfoMenu extends Menu {
     public InfoMenu() {
         super("Information Window");
         int widthInTiles = MainGame.resX/MainGame.tilesize;
-        x = widthInTiles - widthInTiles/6;
-        y = 0;
-        sizeY = MainGame.resY - MainGame.resY/6;
-        sizeX = MainGame.resX/6;
+        xInTiles = widthInTiles - widthInTiles/6;
+        yInTiles = 0;
+        sizeYInTiles = MainGame.resY - MainGame.resY/6;
+        sizeXInTiles = MainGame.resX/6;
+        minimumSizeInTiles = 5;
         backGroundColor = Color.blue;
-        enabled = true;
         buttons = new MenuButton[0];
         infoSections = new HashMap<String, InfoSection>();
         InfoSection summarySection = new InfoSection(this);
@@ -41,28 +39,42 @@ public class InfoMenu extends Menu {
     public void update(int delta) {
         super.update(delta);
         if(objectInFocus != MainGame.selected) {
-            InfoSection mainDisplay = infoSections.get("summary");
-            mainDisplay.setEnabled(true);
-            objectInFocus = MainGame.selected;
-            if(objectInFocus instanceof Item) {
-                mainDisplay.setImageKey(((Item) objectInFocus).getImageKey());
-                mainDisplay.setImgPosition(new Point(x, y));
-                mainDisplay.setTxtPosition(new Point(x,y+1));
-                mainDisplay.setColor(Color.black);
-                mainDisplay.setFontSize(16);
-                String textToDisplay = "Item - " + ((Item) objectInFocus).getName() + " \n Description: \n " + ((Item) objectInFocus).getDescription();
-                mainDisplay.setTextToDisplay(textToDisplay);
+            if(MainGame.selected instanceof Menu) {
+                return;
             }
-            if(objectInFocus instanceof Char) {
-                mainDisplay.setImageKey(((Char) objectInFocus).getProtraitKey());
-                mainDisplay.setImgPosition(new Point(x, y));
-                mainDisplay.setTxtPosition(new Point(x,y+1));
-                mainDisplay.setColor(Color.black);
-                mainDisplay.setFontSize(16);
+            InfoSection summarySection = infoSections.get("summary");
+            objectInFocus = MainGame.selected;
+            summarySection.setColor(Color.black);
+            summarySection.setFontSize(16);
+            if(objectInFocus instanceof Item) {
+                summarySection.setTextEnabled(true);
+                summarySection.setImageEnabled(true);
+                summarySection.setImageKey(((Item) objectInFocus).getImageKey());
+                summarySection.setImgPosition(new Point(0, 0));
+                summarySection.setTxtPosition(new Point(0, 1));
+                String textToDisplay = "Item - " + ((Item) objectInFocus).getName() + " \n Description: \n " + ((Item) objectInFocus).getDescription();
+                summarySection.setTextToDisplay(textToDisplay);
+            }
+            else if(objectInFocus instanceof Char) {
+                summarySection.setTextEnabled(true);
+                summarySection.setImageEnabled(true);
+                summarySection.setImageKey(((Char) objectInFocus).getProtraitKey());
+                summarySection.setImgPosition(new Point(0, 0));
+                summarySection.setTxtPosition(new Point(0, 1));
                 String textToDisplay = objectInFocus.getClass().getSimpleName() + " - " + ((Char) objectInFocus).getName() + " \n Speed - " +
                         ((Char) objectInFocus).getSpeed() + " \n Wits - " + ((Char) objectInFocus).getWits();
-                mainDisplay.setTextToDisplay(textToDisplay);
+                summarySection.setTextToDisplay(textToDisplay);
 
+            }
+            else if (objectInFocus instanceof Menu) {
+                summarySection.setImageEnabled(false);
+                summarySection.setTextEnabled(true);
+                summarySection.setTxtPosition(new Point(0, 0));
+                summarySection.setTextToDisplay("Oh my, you've selected me, I suppose you could now use the arrow keys to move me");
+            }
+            else if (objectInFocus == null) {
+                summarySection.setImageEnabled(false);
+                summarySection.setTextEnabled(false);
             }
         }
     }
@@ -70,7 +82,7 @@ public class InfoMenu extends Menu {
     @Override
     public void render(Graphics graphics) {
         super.render(graphics);
-        for(String key : infoSections.keySet()) {
+        for (String key : infoSections.keySet()) {
             infoSections.get(key).render(graphics);
         }
     }

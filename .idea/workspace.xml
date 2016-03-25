@@ -2,23 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21766e1a-01bb-4ea1-ac85-eb60fac4af3f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/characters/Char.class" afterPath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/characters/Char.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/util/ImageManager.class" afterPath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/util/ImageManager.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/joel/util/Util.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/menus/InfoMenu.class" afterPath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/menus/InfoMenu.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/menus/InfoSection.class" afterPath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/menus/InfoSection.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/item/Item.class" afterPath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/item/Item.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/MainGame.class" afterPath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/MainGame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/characters/actions/tasks/Task.class" afterPath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/characters/actions/tasks/Task.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joel/characters/Char.java" afterPath="$PROJECT_DIR$/src/com/joel/characters/Char.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joel/util/ImageManager.java" afterPath="$PROJECT_DIR$/src/com/joel/util/ImageManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/menus/MainMenu.class" afterPath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/menus/MainMenu.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/menus/Menu.class" afterPath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/menus/Menu.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/menus/MenuButton.class" afterPath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/menus/MenuButton.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/characters/classes/Paladin.class" afterPath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/characters/classes/Paladin.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/characters/classes/Wizard.class" afterPath="$PROJECT_DIR$/out/production/FromTheBeginning/com/joel/characters/classes/Wizard.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joel/menus/InfoMenu.java" afterPath="$PROJECT_DIR$/src/com/joel/menus/InfoMenu.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joel/menus/InfoSection.java" afterPath="$PROJECT_DIR$/src/com/joel/menus/InfoSection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joel/item/Item.java" afterPath="$PROJECT_DIR$/src/com/joel/item/Item.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joel/MainGame.java" afterPath="$PROJECT_DIR$/src/com/joel/MainGame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joel/characters/classes/Paladin.java" afterPath="$PROJECT_DIR$/src/com/joel/characters/classes/Paladin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joel/characters/actions/tasks/Task.java" afterPath="$PROJECT_DIR$/src/com/joel/characters/actions/tasks/Task.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joel/characters/classes/Wizard.java" afterPath="$PROJECT_DIR$/src/com/joel/characters/classes/Wizard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/properties/items/items.json" afterPath="$PROJECT_DIR$/properties/items/items.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joel/menus/MainMenu.java" afterPath="$PROJECT_DIR$/src/com/joel/menus/MainMenu.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joel/menus/Menu.java" afterPath="$PROJECT_DIR$/src/com/joel/menus/Menu.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joel/menus/MenuButton.java" afterPath="$PROJECT_DIR$/src/com/joel/menus/MenuButton.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/main.properties" afterPath="$PROJECT_DIR$/conf/main.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="FromTheBeginning.iws" />
@@ -42,12 +41,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainGame.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainGame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/joel/MainGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="235" column="0" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
+            <state vertical-scroll-proportion="1.2224532">
+              <caret line="177" column="27" selection-start-line="177" selection-start-column="27" selection-end-line="177" selection-end-column="27" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Util.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/joel/util/Util.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -56,7 +67,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/joel/menus/InfoMenu.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="61" column="79" selection-start-line="61" selection-start-column="79" selection-end-line="61" selection-end-column="79" />
+              <caret line="57" column="30" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -64,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Wizard.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/joel/characters/classes/Wizard.java">
+      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/joel/menus/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.84823287">
-              <caret line="42" column="35" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -78,25 +89,25 @@
         <entry file="file://$PROJECT_DIR$/src/com/joel/menus/InfoSection.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
+              <caret line="78" column="12" selection-start-line="78" selection-start-column="12" selection-end-line="78" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3497#3498#0" expanded="true" />
-                <element signature="e#3537#3538#0" expanded="true" />
-                <element signature="e#3595#3596#0" expanded="true" />
-                <element signature="e#3645#3646#0" expanded="true" />
-                <element signature="e#3686#3687#0" expanded="true" />
-                <element signature="e#3720#3721#0" expanded="true" />
-                <element signature="e#3754#3755#0" expanded="true" />
-                <element signature="e#3784#3785#0" expanded="true" />
-                <element signature="e#3831#3832#0" expanded="true" />
-                <element signature="e#3869#3870#0" expanded="true" />
-                <element signature="e#3922#3923#0" expanded="true" />
-                <element signature="e#3968#3969#0" expanded="true" />
+                <element signature="e#3981#3982#0" expanded="true" />
                 <element signature="e#4021#4022#0" expanded="true" />
-                <element signature="e#4067#4068#0" expanded="true" />
-                <element signature="e#4096#4097#0" expanded="true" />
-                <element signature="e#4123#4124#0" expanded="true" />
+                <element signature="e#4079#4080#0" expanded="true" />
+                <element signature="e#4129#4130#0" expanded="true" />
+                <element signature="e#4170#4171#0" expanded="true" />
+                <element signature="e#4204#4205#0" expanded="true" />
+                <element signature="e#4257#4258#0" expanded="true" />
+                <element signature="e#4303#4304#0" expanded="true" />
+                <element signature="e#4356#4357#0" expanded="true" />
+                <element signature="e#4402#4403#0" expanded="true" />
+                <element signature="e#4431#4432#0" expanded="true" />
+                <element signature="e#4458#4459#0" expanded="true" />
+                <element signature="e#4728#4729#0" expanded="true" />
+                <element signature="e#4774#4775#0" expanded="true" />
+                <element signature="e#4831#4832#0" expanded="true" />
+                <element signature="e#4879#4880#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -165,18 +176,20 @@
         <option value="$PROJECT_DIR$/src/com/joel/characters/actions/MoveEvent.java" />
         <option value="$PROJECT_DIR$/src/com/joel/maps/Menu.java" />
         <option value="$PROJECT_DIR$/src/com/joel/menus/MenuButton.java" />
-        <option value="$PROJECT_DIR$/src/com/joel/menus/Menu.java" />
         <option value="$PROJECT_DIR$/src/com/joel/menus/MainMenu.java" />
         <option value="$PROJECT_DIR$/src/com/joel/characters/actions/tasks/Task.java" />
-        <option value="$PROJECT_DIR$/src/com/joel/MainGame.java" />
         <option value="$PROJECT_DIR$/src/com/joel/item/Item.java" />
         <option value="$PROJECT_DIR$/properties/items/items.json" />
         <option value="$PROJECT_DIR$/src/com/joel/util/ImageManager.java" />
         <option value="$PROJECT_DIR$/src/com/joel/characters/classes/Paladin.java" />
         <option value="$PROJECT_DIR$/src/com/joel/characters/Char.java" />
-        <option value="$PROJECT_DIR$/src/com/joel/menus/InfoSection.java" />
-        <option value="$PROJECT_DIR$/src/com/joel/menus/InfoMenu.java" />
         <option value="$PROJECT_DIR$/src/com/joel/characters/classes/Wizard.java" />
+        <option value="$PROJECT_DIR$/conf/main.properties" />
+        <option value="$PROJECT_DIR$/src/com/joel/util/Util.java" />
+        <option value="$PROJECT_DIR$/src/com/joel/menus/Menu.java" />
+        <option value="$PROJECT_DIR$/src/com/joel/MainGame.java" />
+        <option value="$PROJECT_DIR$/src/com/joel/menus/InfoMenu.java" />
+        <option value="$PROJECT_DIR$/src/com/joel/menus/InfoSection.java" />
       </list>
     </option>
   </component>
@@ -700,7 +713,7 @@
       <workItem from="1458757017222" duration="18000" />
       <workItem from="1458769494831" duration="23812000" />
       <workItem from="1458826692613" duration="2369000" />
-      <workItem from="1458835170394" duration="22793000" />
+      <workItem from="1458835170394" duration="29699000" />
     </task>
     <task id="LOCAL-00001" summary="Changed to use cached images and item info, still need to expland on the items getting descriptors">
       <created>1448054911988</created>
@@ -726,11 +739,17 @@
       <option name="project" value="LOCAL" />
       <updated>1458793309727</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Basic information menu created, long text will automatically be divided and displayed">
+      <created>1458882659799</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1458882659799</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66835000" />
+    <option name="totallyTimeSpent" value="73741000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1618" height="870" extended-state="6" />
@@ -747,7 +766,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26043165" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41438848" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17032258" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17032258" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -810,7 +829,8 @@
     <MESSAGE value="Stockpiles now store one item, Stack size is now a property for items that are storable" />
     <MESSAGE value="Fixed  bug where two characters would collide and never find their way around each other, this was done by making the Wait even have a random value between 1 and 3" />
     <MESSAGE value="Menus! Selection of stuff, revamp of selecting things on screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Menus! Selection of stuff, revamp of selecting things on screen" />
+    <MESSAGE value="Basic information menu created, long text will automatically be divided and displayed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic information menu created, long text will automatically be divided and displayed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -821,14 +841,8 @@
           <properties />
           <option name="timeStamp" value="46" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/joel/menus/InfoSection.java</url>
-          <line>69</line>
-          <properties />
-          <option name="timeStamp" value="86" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="87" />
+      <option name="time" value="100" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -837,13 +851,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/joel/util/ItemManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/properties/items/items.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1058,13 +1065,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/conf/main.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/images/stock.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1138,71 +1138,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/slick.jar!/org/newdawn/slick/GameContainer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36363637">
-          <caret line="297" column="19" selection-start-line="297" selection-start-column="19" selection-end-line="297" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/joel/menus/MenuButton.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="false" />
-            <element signature="e#743#744#0" expanded="false" />
-            <element signature="e#767#768#0" expanded="false" />
-            <element signature="e#798#799#0" expanded="false" />
-            <element signature="e#824#825#0" expanded="false" />
-            <element signature="e#849#850#0" expanded="false" />
-            <element signature="e#873#874#0" expanded="false" />
-            <element signature="e#904#905#0" expanded="false" />
-            <element signature="e#930#931#0" expanded="false" />
-            <element signature="e#965#966#0" expanded="false" />
-            <element signature="e#996#997#0" expanded="false" />
-            <element signature="e#1044#1045#0" expanded="false" />
-            <element signature="e#1084#1085#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joel/menus/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#623#624#0" expanded="false" />
-            <element signature="e#655#656#0" expanded="false" />
-            <element signature="e#932#933#0" expanded="false" />
-            <element signature="e#960#961#0" expanded="false" />
-            <element signature="e#999#1000#0" expanded="false" />
-            <element signature="e#1033#1034#0" expanded="false" />
-            <element signature="e#1062#1063#0" expanded="false" />
-            <element signature="e#1090#1091#0" expanded="false" />
-            <element signature="e#1129#1130#0" expanded="false" />
-            <element signature="e#1163#1164#0" expanded="false" />
-            <element signature="e#1188#1189#0" expanded="false" />
-            <element signature="e#1212#1213#0" expanded="false" />
-            <element signature="e#1243#1244#0" expanded="false" />
-            <element signature="e#1269#1270#0" expanded="false" />
-            <element signature="e#1294#1295#0" expanded="false" />
-            <element signature="e#1318#1319#0" expanded="false" />
-            <element signature="e#1349#1350#0" expanded="false" />
-            <element signature="e#1375#1376#0" expanded="false" />
-            <element signature="e#1406#1407#0" expanded="false" />
-            <element signature="e#1433#1434#0" expanded="false" />
-            <element signature="e#1471#1472#0" expanded="false" />
-            <element signature="e#1503#1504#0" expanded="false" />
-            <element signature="e#1537#1538#0" expanded="false" />
-            <element signature="e#1567#1568#0" expanded="false" />
-            <element signature="e#1614#1615#0" expanded="false" />
-            <element signature="e#1652#1653#0" expanded="false" />
-            <element signature="e#1692#1693#0" expanded="false" />
-            <element signature="e#1722#1723#0" expanded="false" />
-            <element signature="e#1783#1784#0" expanded="false" />
-            <element signature="e#1837#1838#0" expanded="false" />
+            <element signature="e#750#751#0" expanded="false" />
+            <element signature="e#774#775#0" expanded="false" />
+            <element signature="e#805#806#0" expanded="false" />
+            <element signature="e#831#832#0" expanded="false" />
+            <element signature="e#856#857#0" expanded="false" />
+            <element signature="e#880#881#0" expanded="false" />
+            <element signature="e#911#912#0" expanded="false" />
+            <element signature="e#937#938#0" expanded="false" />
+            <element signature="e#972#973#0" expanded="false" />
+            <element signature="e#1003#1004#0" expanded="false" />
+            <element signature="e#1051#1052#0" expanded="false" />
+            <element signature="e#1091#1092#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1278,14 +1231,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joel/MainGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="235" column="0" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/joel/util/ItemManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1315,32 +1260,6 @@
         <state vertical-scroll-proportion="-4.0">
           <caret line="199" column="16" selection-start-line="199" selection-start-column="16" selection-end-line="199" selection-end-column="16" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joel/menus/InfoSection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3497#3498#0" expanded="true" />
-            <element signature="e#3537#3538#0" expanded="true" />
-            <element signature="e#3595#3596#0" expanded="true" />
-            <element signature="e#3645#3646#0" expanded="true" />
-            <element signature="e#3686#3687#0" expanded="true" />
-            <element signature="e#3720#3721#0" expanded="true" />
-            <element signature="e#3754#3755#0" expanded="true" />
-            <element signature="e#3784#3785#0" expanded="true" />
-            <element signature="e#3831#3832#0" expanded="true" />
-            <element signature="e#3869#3870#0" expanded="true" />
-            <element signature="e#3922#3923#0" expanded="true" />
-            <element signature="e#3968#3969#0" expanded="true" />
-            <element signature="e#4021#4022#0" expanded="true" />
-            <element signature="e#4067#4068#0" expanded="true" />
-            <element signature="e#4096#4097#0" expanded="true" />
-            <element signature="e#4123#4124#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1374,10 +1293,18 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joel/menus/InfoMenu.java">
+    <entry file="file://$PROJECT_DIR$/conf/main.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="79" selection-start-line="61" selection-start-column="79" selection-end-line="61" selection-end-column="79" />
+          <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joel/util/Util.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1386,8 +1313,68 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/joel/characters/classes/Wizard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.84823287">
+        <state vertical-scroll-proportion="0.0">
           <caret line="42" column="35" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joel/menus/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/slick.jar!/org/newdawn/slick/GameContainer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36363637">
+          <caret line="325" column="0" selection-start-line="325" selection-start-column="0" selection-end-line="325" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joel/menus/InfoMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="30" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joel/menus/InfoSection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="78" column="12" selection-start-line="78" selection-start-column="12" selection-end-line="78" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3981#3982#0" expanded="true" />
+            <element signature="e#4021#4022#0" expanded="true" />
+            <element signature="e#4079#4080#0" expanded="true" />
+            <element signature="e#4129#4130#0" expanded="true" />
+            <element signature="e#4170#4171#0" expanded="true" />
+            <element signature="e#4204#4205#0" expanded="true" />
+            <element signature="e#4257#4258#0" expanded="true" />
+            <element signature="e#4303#4304#0" expanded="true" />
+            <element signature="e#4356#4357#0" expanded="true" />
+            <element signature="e#4402#4403#0" expanded="true" />
+            <element signature="e#4431#4432#0" expanded="true" />
+            <element signature="e#4458#4459#0" expanded="true" />
+            <element signature="e#4728#4729#0" expanded="true" />
+            <element signature="e#4774#4775#0" expanded="true" />
+            <element signature="e#4831#4832#0" expanded="true" />
+            <element signature="e#4879#4880#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joel/MainGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2224532">
+          <caret line="177" column="27" selection-start-line="177" selection-start-column="27" selection-end-line="177" selection-end-column="27" />
           <folding />
         </state>
       </provider>

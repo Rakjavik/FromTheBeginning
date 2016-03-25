@@ -14,9 +14,9 @@ import com.joel.maps.MapHelper;
 import com.joel.menus.InfoMenu;
 import com.joel.menus.MainMenu;
 import com.joel.menus.Menu;
-import com.joel.menus.MenuButton;
 import com.joel.util.ImageManager;
 import com.joel.util.ItemManager;
+import com.joel.util.Util;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
 
@@ -71,12 +71,14 @@ public class MainGame extends BasicGame {
         item.setX(4);
         item.setY(3);
         map.getItems().add(item);
-
+        menus[1].setSizeXInTiles(10);
+        menus[1].setSizeYInTiles(10);
+        menus[1].setxInTiles(24);
     }
 
     @Override
     public void keyPressed(int key, char c) {
-        if (key == Input.KEY_W) {
+        if (key == Input.KEY_Q) {
             Wizard wizard = new Wizard();
             wizard.setX(1);
             wizard.setY(1);
@@ -88,27 +90,64 @@ public class MainGame extends BasicGame {
             paladin.setY(5);
             paladin.setCurrentEvent(new WonderingEvent(paladin));
             characters.add(paladin);
-        } else if (key == Input.KEY_SPACE) {
+        } else if (key == Input.KEY_S) {
+            if(selected instanceof Menu) {
+                ((Menu) selected).setSizeYInTiles(((Menu) selected).getSizeYInTiles() + 1);
+            }
+
+        }
+        else if (key == Input.KEY_W) {
+            if(selected instanceof Menu) {
+                ((Menu) selected).setSizeYInTiles(((Menu) selected).getSizeYInTiles() - 1);
+            }
+        }
+        else if (key == Input.KEY_D) {
+            if(selected instanceof Menu) {
+                ((Menu) selected).setSizeXInTiles(((Menu) selected).getSizeXInTiles() + 1);
+            }
+        }
+        else if (key == Input.KEY_A) {
+            if(selected instanceof Menu) {
+                ((Menu) selected).setSizeXInTiles(((Menu) selected).getSizeXInTiles() - 1);
+            }
+        }
+        else if (key == Input.KEY_SPACE) {
             if (gameSpeed == 0) {
                 gameSpeed = 1;
             } else {
                 gameSpeed = 0;
             }
         } else if (key == Input.KEY_UP) {
-            if (viewY > 0) {
-                viewY -= tilesize;
+            if(selected instanceof Menu) {
+                ((Menu) selected).setyInTiles(((Menu) selected).getyInTiles() - 1);
+            } else {
+                if (viewY > 0) {
+                    viewY -= tilesize;
+                }
             }
         } else if (key == Input.KEY_DOWN) {
-            if (viewY < map.getMaxYInPixels()) {
-                viewY += tilesize;
+            if(selected instanceof Menu) {
+                ((Menu) selected).setyInTiles(((Menu) selected).getyInTiles() + 1);
+            } else {
+                if (viewY < map.getMaxYInPixels()) {
+                    viewY += tilesize;
+                }
             }
         } else if (key == Input.KEY_LEFT) {
-            if (viewX > 0) {
-                viewX -= tilesize;
+            if(selected instanceof Menu) {
+                ((Menu) selected).setxInTiles(((Menu) selected).getxInTiles()-1);
+            } else {
+                if (viewX > 0) {
+                    viewX -= tilesize;
+                }
             }
         } else if (key == Input.KEY_RIGHT) {
-            if (viewX < map.getMaxXInPixels()) {
-                viewX += tilesize;
+            if(selected instanceof Menu) {
+                ((Menu) selected).setxInTiles(((Menu) selected).getxInTiles()+1);
+            } else {
+                if (viewX < map.getMaxXInPixels()) {
+                    viewX += tilesize;
+                }
             }
         } else if (key == Input.KEY_ESCAPE) {
             System.exit(0);
@@ -121,11 +160,11 @@ public class MainGame extends BasicGame {
         x = x / MainGame.tilesize + viewX / tilesize;
         y = y / MainGame.tilesize + viewY / tilesize;
 
-        Object click = whatDidIJustClickOn(x, y);
+        Object click = Util.whatDidIJustClickOn(x, y, characters, map, menus);
 
         if (click instanceof Char) {
             if (button == Input.MOUSE_LEFT_BUTTON) {
-                selected = (Char) click;
+                selected = click;
                 return;
             }
         }
@@ -144,6 +183,14 @@ public class MainGame extends BasicGame {
             if (button == Input.MOUSE_LEFT_BUTTON) {
                 selected = click;
             }
+        }
+        if (click instanceof Menu) {
+            if(button == Input.MOUSE_RIGHT_BUTTON) {
+                selected = click;
+            }
+        }
+        if (click == null) {
+            selected = null;
         }
     }
 
@@ -186,6 +233,7 @@ public class MainGame extends BasicGame {
             characters.get(count).render(graphics);
         }
         if (selected != null) {
+            graphics.setColor(Color.white);
             if (selected instanceof Char) {
                 graphics.drawRect(((Char) selected).getX() * tilesize - MainGame.viewX,
                         ((Char) selected).getY() * tilesize - MainGame.viewY, tilesize, tilesize);
@@ -196,6 +244,9 @@ public class MainGame extends BasicGame {
             } else if (selected instanceof StockPile) {
                 graphics.drawRect(((StockPile) selected).getX() * tilesize - MainGame.viewX,
                         ((StockPile) selected).getY() * tilesize - MainGame.viewY, tilesize, tilesize);
+            } else if (selected instanceof Menu) {
+                graphics.drawRect(((Menu) selected).getxInTiles()*tilesize,((Menu) selected).getyInTiles()*tilesize,
+                        ((Menu) selected).getSizeXInTiles()*tilesize,((Menu) selected).getSizeYInTiles()*tilesize);
             }
         }
         for (Menu menu : menus) {
@@ -251,34 +302,6 @@ public class MainGame extends BasicGame {
         for (StockPile stockPile : map.getStockPiles()) {
             if (!stockPile.isFull() && stockPile.getStockType() == stockType) {
                 return stockPile;
-            }
-        }
-        return null;
-    }
-
-    private Object whatDidIJustClickOn(int xTile, int yTile) {
-        for (Char character : characters) {
-            if (character.getX() == xTile && character.getY() == yTile) {
-                return character;
-            }
-        }
-        for (Item item : map.getItems()) {
-            if (item.getX() == xTile && item.getY() == yTile) {
-                return item;
-            }
-        }
-        for (Item item : map.getStockPiles()) {
-            if (item.getX() == xTile && item.getY() == yTile) {
-                return item;
-            }
-        }
-        for (Menu menu : menus) {
-            if (menu.isEnabled()) {
-                for (MenuButton button : menu.getButtons()) {
-                    if (xTile == button.getX() && yTile == button.getY()) {
-                        return button;
-                    }
-                }
             }
         }
         return null;

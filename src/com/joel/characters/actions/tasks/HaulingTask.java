@@ -33,7 +33,7 @@ public class HaulingTask extends Task {
                 assignedCharacter.getItems().add(itemToBeHauled);
                 itemToBeHauled.setStored(true);
                 itemToBeHauled.setRender(false);
-                MoveEvent moveEvent = new MoveEvent(assignedCharacter, targetStockPile.getX(), targetStockPile.getY());
+                MoveEvent moveEvent = new MoveEvent(assignedCharacter,targetStockPile.getX(),targetStockPile.getY());
                 assignedCharacter.setCurrentEvent(moveEvent);
                 waitingForEvent = true;
             } else if (step == 2) {
@@ -41,7 +41,7 @@ public class HaulingTask extends Task {
                 itemToBeHauled.setY(targetStockPile.getY());
                 itemToBeHauled.setRender(true);
                 itemToBeHauled.setAvailable(true);
-                boolean success = ItemHelper.stockItem(itemToBeHauled, targetStockPile, MainGame.map.getItems());
+                boolean success = ItemHelper.stockItem(itemToBeHauled,targetStockPile, MainGame.map.getItems());
                 if(success) {
                     taskComplete = true;
                     assignedCharacter.getItems().remove(itemToBeHauled);
@@ -55,7 +55,7 @@ public class HaulingTask extends Task {
         super.cleanup();
         itemToBeHauled.setAvailable(true);
         itemToBeHauled.setRender(true);
-        if (assignedCharacter != null) {
+        if(assignedCharacter != null) {
             itemToBeHauled.setX(assignedCharacter.getX());
             itemToBeHauled.setY(assignedCharacter.getY());
         }

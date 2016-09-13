@@ -21,8 +21,8 @@ public class Util {
                     return button;
                 }
             }
-            if (xTile >= menu.getxInTiles() && xTile <= menu.getxInTiles() + menu.getSizeXInTiles()) {
-                if (yTile >= menu.getyInTiles() && yTile <= menu.getyInTiles() + menu.getSizeYInTiles()) {
+            if(xTile >= menu.getxInTiles() && xTile <= menu.getxInTiles()+menu.getSizeXInTiles()) {
+                if(yTile >= menu.getyInTiles() && yTile <= menu.getyInTiles()+menu.getSizeYInTiles()) {
                     return menu;
                 }
             }
@@ -44,10 +44,9 @@ public class Util {
         }
         return null;
     }
-
-    public static Task getTaskByTarget(Object target, List<Task> tasks) {
-        for (Task task : tasks) {
-            if (task.getTarget().equals(target)) {
+    public static Task getTaskByTarget(Object target,List<Task> tasks) {
+        for(Task task : tasks) {
+            if(task.getTarget().equals(target)) {
                 return task;
             }
         }

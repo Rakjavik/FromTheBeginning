@@ -21,7 +21,7 @@ public class ChoppingTask extends Task {
         if (!waitingForEvent && assignedCharacter != null) {
             Item targetChop = (Item) target;
             if (step == 0) {
-                assignedCharacter.setCurrentEvent(new MoveEvent(assignedCharacter, targetChop.getX(), targetChop.getY()));
+                assignedCharacter.setCurrentEvent(new MoveEvent(assignedCharacter,targetChop.getX(),targetChop.getY()));
                 waitingForEvent = true;
             } else if (step == 1) {
                 //TODO assigned cycle time by character skill
@@ -41,7 +41,7 @@ public class ChoppingTask extends Task {
     @Override
     public void cleanup() {
         super.cleanup();
-        if (assignedCharacter != null)
+        if(assignedCharacter != null)
             assignedCharacter.setCurrentEvent(new IdleEvent(assignedCharacter));
     }
 }

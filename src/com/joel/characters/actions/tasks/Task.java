@@ -44,7 +44,7 @@ public abstract class Task implements Updateable {
     }
 
     public void cleanup() {
-        if (assignedCharacter != null)
+        if(assignedCharacter != null)
             assignedCharacter.setFreeForAssignment(true);
     }
 

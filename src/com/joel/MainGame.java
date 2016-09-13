@@ -171,7 +171,7 @@ public class MainGame extends BasicGame {
         if (click instanceof Item) {
             if (button == Input.MOUSE_RIGHT_BUTTON) {
                 if (((Item) click).isChoppable()) {
-                    if (((Item) click).isSelected()) {
+                    if(((Item) click).isSelected()) {
                         Task chopCancelTask = Util.getTaskByTarget(click, tasks);
                         chopCancelTask.cleanup();
                         tasks.remove(chopCancelTask);
